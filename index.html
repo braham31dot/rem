@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no, maximum-scale=1.0">
     <title>Remedy Chat - Traditional Wellness Guidance</title>
     
     <!-- Favicon for browser -->
@@ -64,14 +64,15 @@
             -webkit-touch-callout: none;
         }
 
-        html, body {
+        html {
             width: 100%;
             height: 100%;
-            position: fixed;
             overflow: hidden;
         }
 
         body {
+            width: 100vw;
+            height: 100vh;
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
                 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
                 sans-serif;
@@ -83,9 +84,10 @@
             transition: background-color 0.3s, color 0.3s;
             -webkit-user-select: none;
             user-select: none;
+            overflow: hidden;
             position: fixed;
-            width: 100vw;
-            height: 100vh;
+            top: 0;
+            left: 0;
         }
 
         input, select, textarea, button {
@@ -106,101 +108,96 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: space-between;
-            min-height: 100%;
+            justify-content: flex-start;
+            width: 100%;
+            height: 100%;
             background: linear-gradient(135deg, #10b981 0%, #8b5cf6 100%);
             color: white;
-            padding: 2rem 1.5rem;
-            padding-top: calc(3rem + var(--safe-area-inset-top));
-            padding-bottom: calc(2rem + var(--safe-area-inset-bottom));
+            padding: 1.5rem;
+            padding-top: calc(2rem + var(--safe-area-inset-top));
+            padding-bottom: calc(1rem + var(--safe-area-inset-bottom));
             text-align: center;
             animation: fadeIn 0.5s ease-in;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
         }
 
         @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .welcome-content-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            width: 100%;
+            max-width: 500px;
         }
 
         .welcome-logo {
-            font-size: 5rem;
-            margin-bottom: 1rem;
+            font-size: 4rem;
+            margin-bottom: 0.5rem;
             animation: float 3s ease-in-out infinite;
         }
 
         @keyframes float {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-20px);
-            }
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
         }
 
         .welcome-title {
-            font-size: 2.5rem;
+            font-size: 2rem;
             font-weight: 700;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.25rem;
             letter-spacing: -1px;
         }
 
         .welcome-subtitle {
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             opacity: 0.9;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
             font-weight: 500;
-        }
-
-        .welcome-content {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            gap: 1.5rem;
-            margin: 2rem 0;
         }
 
         .welcome-section {
             background: rgba(255, 255, 255, 0.15);
             backdrop-filter: blur(10px);
-            padding: 1.5rem;
-            border-radius: 1.25rem;
+            padding: 1rem;
+            border-radius: 1rem;
             border: 1px solid rgba(255, 255, 255, 0.2);
             text-align: left;
         }
 
         .welcome-section h3 {
-            font-size: 1.1rem;
-            margin-bottom: 0.75rem;
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
             display: flex;
             align-items: center;
-            gap: 0.75rem;
+            gap: 0.5rem;
         }
 
         .welcome-section p {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             opacity: 0.9;
-            line-height: 1.5;
+            line-height: 1.4;
         }
 
         .welcome-buttons {
             display: flex;
-            gap: 1rem;
+            gap: 0.75rem;
             justify-content: center;
             flex-wrap: wrap;
+            margin-top: 1rem;
         }
 
         .welcome-btn {
-            padding: 0.6rem 1.2rem;
+            padding: 0.5rem 1rem;
             background: rgba(255, 255, 255, 0.2);
             border: 2px solid white;
             color: white;
             border-radius: 2rem;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.2s;
@@ -214,20 +211,23 @@
         }
 
         .welcome-main-btn {
-            padding: 1rem 2rem;
+            padding: 0.9rem 1.8rem;
             background: white;
             color: #10b981;
             border: none;
             border-radius: 2rem;
-            font-size: 1rem;
+            font-size: 0.95rem;
             font-weight: 700;
             cursor: pointer;
             transition: all 0.2s;
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
             display: flex;
             align-items: center;
+            justify-content: center;
             gap: 0.5rem;
-            margin-top: 1.5rem;
+            margin-top: 1rem;
+            width: 100%;
+            max-width: 300px;
         }
 
         .welcome-main-btn:active {
@@ -239,6 +239,7 @@
         .info-page {
             display: flex;
             flex-direction: column;
+            width: 100%;
             height: 100%;
             background-color: var(--background);
         }
@@ -251,10 +252,11 @@
             justify-content: space-between;
             align-items: center;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            flex-shrink: 0;
         }
 
         .info-header h1 {
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             font-weight: 700;
         }
 
@@ -269,7 +271,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             transition: all 0.2s;
         }
 
@@ -281,15 +283,15 @@
         .info-content {
             flex: 1;
             overflow-y: auto;
-            padding: 1.5rem;
-            padding-bottom: calc(1.5rem + var(--safe-area-inset-bottom));
+            padding: 1.25rem;
+            padding-bottom: calc(1.25rem + var(--safe-area-inset-bottom));
             -webkit-overflow-scrolling: touch;
         }
 
         .info-content h2 {
-            font-size: 1.3rem;
-            margin-top: 1.5rem;
-            margin-bottom: 0.75rem;
+            font-size: 1.1rem;
+            margin-top: 1.25rem;
+            margin-bottom: 0.6rem;
             color: var(--primary);
         }
 
@@ -298,19 +300,21 @@
         }
 
         .info-content p {
-            margin-bottom: 1rem;
-            line-height: 1.6;
+            margin-bottom: 0.85rem;
+            line-height: 1.5;
             color: var(--foreground);
+            font-size: 0.9rem;
         }
 
         .info-content ul {
-            margin-left: 1.5rem;
-            margin-bottom: 1rem;
+            margin-left: 1.25rem;
+            margin-bottom: 0.85rem;
         }
 
         .info-content li {
-            margin-bottom: 0.5rem;
-            line-height: 1.6;
+            margin-bottom: 0.4rem;
+            line-height: 1.5;
+            font-size: 0.9rem;
         }
 
         /* ========== CHAT PAGE ========== */
@@ -364,31 +368,33 @@
         .chat-header {
             background: linear-gradient(135deg, #10b981 0%, #8b5cf6 100%);
             color: white;
-            padding: calc(1rem + var(--safe-area-inset-top)) 1rem 1rem 1rem;
+            padding: calc(0.8rem + var(--safe-area-inset-top)) 0.8rem 0.8rem 0.8rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
             flex-shrink: 0;
             z-index: 100;
+            gap: 0.5rem;
         }
 
         .header-content {
             flex: 1;
             text-align: center;
+            min-width: 0;
         }
 
         .chat-header h1 {
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             font-weight: 700;
             margin: 0;
             letter-spacing: -0.5px;
         }
 
         .chat-header p {
-            font-size: 0.75rem;
+            font-size: 0.65rem;
             opacity: 0.85;
-            margin-top: 0.25rem;
+            margin-top: 0.15rem;
             font-weight: 500;
         }
 
@@ -396,14 +402,14 @@
             background: rgba(255, 255, 255, 0.25);
             border: 2px solid rgba(255, 255, 255, 0.4);
             color: white;
-            width: 44px;
-            height: 44px;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.4rem;
+            font-size: 1.2rem;
             transition: all 0.2s ease;
             -webkit-user-select: none;
             user-select: none;
@@ -419,10 +425,10 @@
         .chat-messages {
             flex: 1;
             overflow-y: auto;
-            padding: 1rem;
+            padding: 0.75rem;
             display: flex;
             flex-direction: column;
-            gap: 0.75rem;
+            gap: 0.6rem;
             -webkit-user-select: text;
             user-select: text;
             -webkit-overflow-scrolling: touch;
@@ -431,7 +437,7 @@
 
         .message {
             display: flex;
-            gap: 0.5rem;
+            gap: 0.4rem;
             animation: slideIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
 
@@ -452,12 +458,12 @@
 
         .message-content {
             max-width: 85%;
-            padding: 0.7rem 0.95rem;
-            border-radius: 1.25rem;
+            padding: 0.6rem 0.85rem;
+            border-radius: 1.1rem;
             word-wrap: break-word;
             white-space: pre-wrap;
-            line-height: 1.45;
-            font-size: 0.95rem;
+            line-height: 1.4;
+            font-size: 0.9rem;
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
         }
 
@@ -465,37 +471,37 @@
             background-color: var(--card);
             color: var(--card-foreground);
             border: 1px solid var(--border);
-            border-radius: 1.5rem;
+            border-radius: 1.3rem;
         }
 
         .message.user .message-content {
             background: linear-gradient(135deg, #10b981 0%, #059669 100%);
             color: var(--primary-foreground);
-            border-radius: 1.5rem;
-            border-bottom-right-radius: 0.5rem;
+            border-radius: 1.3rem;
+            border-bottom-right-radius: 0.4rem;
         }
 
         .message-content.warning {
             background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
             color: #92400e;
             border-left: 3px solid #f59e0b;
-            border-radius: 1rem;
+            border-radius: 0.9rem;
         }
 
         .typing-indicator {
             display: flex;
-            gap: 0.4rem;
-            padding: 0.7rem 0.95rem;
+            gap: 0.3rem;
+            padding: 0.6rem 0.85rem;
             background-color: var(--card);
             border: 1px solid var(--border);
-            border-radius: 1.5rem;
+            border-radius: 1.3rem;
             width: fit-content;
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
         }
 
         .typing-dot {
-            width: 8px;
-            height: 8px;
+            width: 7px;
+            height: 7px;
             border-radius: 50%;
             background-color: var(--muted);
             animation: typing 1.4s infinite;
@@ -516,15 +522,15 @@
             }
             30% {
                 opacity: 1;
-                transform: translateY(-8px);
+                transform: translateY(-6px);
             }
         }
 
         .chat-form {
             background-color: var(--card);
             border-top: 1px solid var(--border);
-            padding: 0.75rem;
-            padding-bottom: calc(0.75rem + var(--safe-area-inset-bottom));
+            padding: 0.65rem;
+            padding-bottom: calc(0.65rem + var(--safe-area-inset-bottom));
             box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.08);
             flex-shrink: 0;
         }
@@ -532,14 +538,14 @@
         .form-group {
             display: flex;
             flex-direction: column;
-            gap: 0.65rem;
-            margin-bottom: 0.65rem;
+            gap: 0.55rem;
+            margin-bottom: 0.55rem;
         }
 
         .form-row {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 0.65rem;
+            gap: 0.55rem;
         }
 
         @media (max-width: 480px) {
@@ -549,48 +555,48 @@
             
             .message-content {
                 max-width: 92%;
-                font-size: 0.9rem;
+                font-size: 0.85rem;
             }
             
             .chat-header h1 {
-                font-size: 1.35rem;
+                font-size: 1.1rem;
             }
 
             .chat-header p {
-                font-size: 0.7rem;
+                font-size: 0.6rem;
             }
 
             label {
-                font-size: 0.8rem;
+                font-size: 0.75rem;
             }
         }
 
         label {
             display: block;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             font-weight: 600;
             color: var(--foreground);
-            margin-bottom: 0.25rem;
+            margin-bottom: 0.2rem;
             -webkit-user-select: none;
             user-select: none;
         }
 
         select {
             width: 100%;
-            padding: 0.6rem 0.65rem;
+            padding: 0.55rem 0.6rem;
             border: 1px solid var(--input);
-            border-radius: 0.55rem;
+            border-radius: 0.5rem;
             background-color: var(--card);
             color: var(--foreground);
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             cursor: pointer;
             transition: all 0.2s;
             appearance: none;
-            padding-right: 2.25rem;
+            padding-right: 2rem;
             background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
             background-repeat: no-repeat;
-            background-position: right 0.4rem center;
-            background-size: 1.1rem;
+            background-position: right 0.35rem center;
+            background-size: 1rem;
             font-weight: 500;
         }
 
@@ -611,12 +617,12 @@
 
         .send-btn {
             width: 100%;
-            padding: 0.7rem;
+            padding: 0.6rem;
             background: linear-gradient(135deg, #10b981 0%, #059669 100%);
             color: var(--primary-foreground);
             border: none;
-            border-radius: 0.55rem;
-            font-size: 1.2rem;
+            border-radius: 0.5rem;
+            font-size: 1.1rem;
             cursor: pointer;
             transition: all 0.2s;
             box-shadow: 0 3px 10px rgba(16, 185, 129, 0.25);
@@ -626,7 +632,8 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            height: 44px;
+            height: 40px;
+            min-height: 40px;
         }
 
         .send-btn:active:not(:disabled) {
@@ -649,7 +656,7 @@
         }
 
         .scrollable::-webkit-scrollbar {
-            width: 5px;
+            width: 4px;
         }
 
         .scrollable::-webkit-scrollbar-track {
@@ -658,7 +665,7 @@
 
         .scrollable::-webkit-scrollbar-thumb {
             background: var(--border);
-            border-radius: 3px;
+            border-radius: 2px;
         }
 
         .scrollable::-webkit-scrollbar-thumb:hover {
@@ -686,11 +693,11 @@
         /* iOS specific */
         @supports (padding: max(0px)) {
             .chat-header {
-                padding: max(1rem, env(safe-area-inset-top)) 1rem 1rem 1rem;
+                padding: max(0.8rem, env(safe-area-inset-top)) 0.8rem 0.8rem 0.8rem;
             }
             
             .chat-form {
-                padding-bottom: max(0.75rem, env(safe-area-inset-bottom));
+                padding-bottom: max(0.65rem, env(safe-area-inset-bottom));
             }
         }
 
@@ -722,7 +729,7 @@
         // ============================================
         // APP PAGES
         // ============================================
-        let currentPage = 'welcome'; // 'welcome', 'chat', 'about', 'privacy'
+        let currentPage = 'welcome';
 
         // ============================================
         // THEME MANAGEMENT
@@ -743,7 +750,6 @@
             renderApp();
         }
 
-        // Prevent zoom on double tap
         let lastTouchEnd = 0;
         document.addEventListener('touchend', (e) => {
             const now = Date.now();
@@ -813,7 +819,7 @@
 
         const remedies = {
             African: {
-                "STD": "⚠️ Medical Note: STDs require professional medical care.\n\nTraditional supportive approaches:\n• Ginger and garlic tea boosts immune response\n• Turmeric with honey strengthens immunity\n• Moringa leaf tea provides vital nutrients\n• Adequate rest and hydration\n• Nutritious diet with vegetables\n\nIMPORTANT: You must see a doctor for testing, diagnosis, and treatment. Inform partners for their health. Early treatment prevents complications.",
+                "STD": "⚠️ Medical Note: STDs require professional medical care.\n\nTraditional supportive approaches:\n• Ginger and garlic tea boosts immune response\n• Turmeric with honey strengthens immunity\n• Moringa leaf tea provides vital nutrients\n• Adequate rest and hydration\n• Nutritious diet with vegetables\n\nIMPORTANT: You must see a doctor for testing, diagnosis, and treatment. Inform partners for their health.",
                 "flu": "Use ginger tea with honey and lemon. Garlic has antimicrobial properties. Rest and stay hydrated. African medicine suggests elderberry extracts.",
                 "acne": "Apply tea tree oil or neem oil topically. Turmeric paste with coconut oil reduces inflammation. Drink plenty of water.",
                 "anxiety": "Chamomile and lavender tea promote relaxation. Practice deep breathing. Ashwagandha root tea calms the nervous system.",
@@ -862,7 +868,7 @@
                 "vitiligo": "Ginger and turmeric. Vitamin B12 foods. Sunscreen daily."
             },
             Asian: {
-                "STD": "⚠️ Medical Note: STDs require professional medical care.\n\nTraditional supportive approaches:\n• Ginseng strengthens vital energy (Qi)\n• Goji berries nourish and support\n• Astragalus boosts immune function\n• Reishi mushroom supports resilience\n• Adequate rest and hydration\n\nIMPORTANT: You must see a doctor for testing, diagnosis, and treatment. Inform partners for their health. Early treatment prevents complications.",
+                "STD": "⚠️ Medical Note: STDs require professional medical care.\n\nTraditional supportive approaches:\n• Ginseng strengthens vital energy (Qi)\n• Goji berries nourish and support\n• Astragalus boosts immune function\n• Reishi mushroom supports resilience\n• Adequate rest and hydration\n\nIMPORTANT: You must see a doctor for testing, diagnosis, and treatment. Inform partners for their health.",
                 "flu": "Ginger and turmeric soup with broth. Garlic and onions have antiviral properties. Rest.",
                 "acne": "Green tea reduces sebum. Turmeric masks traditional. Witch hazel balances skin.",
                 "anxiety": "Meditation and tai chi. Ginseng supports nervous system. Jasmine tea calms.",
@@ -911,7 +917,7 @@
                 "vitiligo": "Ginger turmeric. B12 foods. Sunscreen protection."
             },
             Islamic: {
-                "STD": "⚠️ Medical Note: STDs require professional medical care.\n\nTraditional supportive approaches:\n• Black seed (Nigella sativa) valued\n• Honey immune support\n• Prayer and spiritual wellness\n• Adequate rest and hydration\n• Halal nutritious diet\n\nIMPORTANT: Seeking medical care is a religious duty. You must see a doctor for testing, diagnosis, and treatment. Inform partners for their health.",
+                "STD": "⚠️ Medical Note: STDs require professional medical care.\n\nTraditional supportive approaches:\n• Black seed (Nigella sativa) valued\n• Honey immune support\n• Prayer and spiritual wellness\n• Adequate rest and hydration\n• Halal nutritious diet\n\nIMPORTANT: Seeking medical care is a religious duty. See a doctor for testing, diagnosis, and treatment.",
                 "flu": "Black seed powerful immune properties. Honey and ginger tea. Stay hydrated.",
                 "acne": "Rose water cleanses gently. Honey masks beneficial.",
                 "anxiety": "Prayer brings peace. Dates provide comfort. Meditation.",
@@ -1026,12 +1032,10 @@
                 root.innerHTML = `
                     <div class="welcome-screen">
                         <div class="welcome-logo">🌿</div>
-                        <div>
-                            <h1 class="welcome-title">Remedy Chat</h1>
-                            <p class="welcome-subtitle">Traditional Wellness Guidance</p>
-                        </div>
+                        <h1 class="welcome-title">Remedy Chat</h1>
+                        <p class="welcome-subtitle">Traditional Wellness Guidance</p>
 
-                        <div class="welcome-content">
+                        <div class="welcome-content-wrapper">
                             <div class="welcome-section">
                                 <h3>🌍 Three Traditions</h3>
                                 <p>African, Asian, and Islamic traditional medicine wisdom in one app.</p>
@@ -1054,7 +1058,7 @@
                         </div>
 
                         <button class="welcome-main-btn" onclick="window.goToChat()">
-                            Get Started <span style="font-size: 1.3rem;">→</span>
+                            Get Started →
                         </button>
                     </div>
                 `;
@@ -1160,7 +1164,7 @@
                     <div class="chat-header">
                         <div class="header-content">
                             <h1>🌿 Remedy Chat</h1>
-                            <p>Traditional Wellness Guidance</p>
+                            <p>Traditional Wellness</p>
                         </div>
                         <button class="theme-toggle" onclick="window.toggleTheme()" title="Toggle dark/light mode">
                             ${themeIcon}
@@ -1191,26 +1195,18 @@
                             <div class="form-group">
                                 <div class="form-row">
                                     <div>
-                                        <label for="tradition">
-                                            Tradition <span class="required-indicator">*</span>
-                                        </label>
+                                        <label for="tradition">Tradition <span class="required-indicator">*</span></label>
                                         <select id="tradition" required>
                                             <option value="">Choose...</option>
-                                            ${TRADITIONS.map(t => `
-                                                <option value="${t}" ${appState.tradition === t ? 'selected' : ''}>${t}</option>
-                                            `).join('')}
+                                            ${TRADITIONS.map(t => `<option value="${t}" ${appState.tradition === t ? 'selected' : ''}>${t}</option>`).join('')}
                                         </select>
                                     </div>
                                     
                                     <div>
-                                        <label for="concern">
-                                            Concern <span class="required-indicator">*</span>
-                                        </label>
+                                        <label for="concern">Concern <span class="required-indicator">*</span></label>
                                         <select id="concern" required>
                                             <option value="">Choose...</option>
-                                            ${CONCERNS.map(c => `
-                                                <option value="${c}" ${appState.concern === c ? 'selected' : ''}>${c}</option>
-                                            `).join('')}
+                                            ${CONCERNS.map(c => `<option value="${c}" ${appState.concern === c ? 'selected' : ''}>${c}</option>`).join('')}
                                         </select>
                                     </div>
                                 </div>
