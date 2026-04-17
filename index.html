@@ -1,1 +1,501 @@
-<!DOCTYPE html>\n<html lang="en">\n<head>\n    <meta charset="UTF-8">\n    <meta name="viewport" content="width=device-width, initial-scale=1.0">\n    <title>Chat Application</title>\n    <style>\n        /* Add necessary styles for mobile layout */\n        .chat-form-wrapper {\n            border: none; /* Removed bottom border */\n        }\n        .send-button {\n            position: relative;\n            float: right; /* Moves send button to the side */\n        }\n        .header-buttons {\n            text-align: center; /* Center header buttons on mobile */\n        }\n        /* Additional styles for responsiveness */\n        @media (max-width: 600px) {\n            .header-buttons {\n                display: flex;\n                justify-content: center;\n            }\n        }\n    </style>\n</head>\n<body>\n    <div class="header-buttons">\n        <button>Header 1</button>\n        <button>Header 2</button>\n    </div>\n    <form class="chat-form-wrapper">\n        <input type="text" placeholder="Type a message...">\n        <button class="send-button">Send</button>\n    </form>\n</body>\n</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Remedies Bot - Chat</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 10px;
+    }
+
+    .chat-container {
+      width: 100%;
+      max-width: 500px;
+      height: 90vh;
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .chat-header {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 20px;
+      text-align: center;
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .chat-messages {
+      flex: 1;
+      overflow-y: auto;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .message {
+      display: flex;
+      margin-bottom: 10px;
+      animation: slideIn 0.3s ease;
+    }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .message.bot {
+      justify-content: flex-start;
+    }
+
+    .message.user {
+      justify-content: flex-end;
+    }
+
+    .message-content {
+      max-width: 85%;
+      padding: 12px 16px;
+      border-radius: 12px;
+      word-wrap: break-word;
+      line-height: 1.5;
+    }
+
+    .message.bot .message-content {
+      background: #e8f0f7;
+      color: #333;
+      border-bottom-left-radius: 4px;
+    }
+
+    .message.user .message-content {
+      background: #667eea;
+      color: white;
+      border-bottom-right-radius: 4px;
+    }
+
+    .remedy-box {
+      background: #f0f4ff;
+      border-left: 4px solid #667eea;
+      padding: 12px;
+      border-radius: 8px;
+      margin: 8px 0;
+    }
+
+    .remedy-title {
+      font-weight: bold;
+      color: #667eea;
+      margin-bottom: 8px;
+    }
+
+    .remedy-item {
+      padding: 6px 0;
+      color: #333;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .remedy-item:last-child {
+      border-bottom: none;
+    }
+
+    .chat-input {
+      padding: 15px;
+      border-top: 1px solid #ddd;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      background: #f9f9f9;
+    }
+
+    select {
+      padding: 10px;
+      border: 2px solid #667eea;
+      border-radius: 8px;
+      font-size: 14px;
+      cursor: pointer;
+      background: white;
+    }
+
+    select:focus {
+      outline: none;
+      border-color: #764ba2;
+    }
+
+    .input-group {
+      display: flex;
+      gap: 10px;
+    }
+
+    button {
+      flex: 1;
+      padding: 10px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    button:hover {
+      transform: scale(1.02);
+    }
+
+    button:active {
+      transform: scale(0.98);
+    }
+
+    .scrollbar::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .scrollbar::-webkit-scrollbar-track {
+      background: #f1f1f1;
+    }
+
+    .scrollbar::-webkit-scrollbar-thumb {
+      background: #667eea;
+      border-radius: 3px;
+    }
+
+    .scrollbar::-webkit-scrollbar-thumb:hover {
+      background: #764ba2;
+    }
+
+    .chat-messages {
+      scrollbar-color: #667eea #f1f1f1;
+      scrollbar-width: thin;
+    }
+  </style>
+</head>
+<body>
+  <div class="chat-container">
+    <div class="chat-header">🌿 Remedies Bot</div>
+    
+    <div class="chat-messages scrollbar" id="chatMessages"></div>
+    
+    <div class="chat-input">
+      <select id="condition" placeholder="Select Condition">
+        <option value="">🏥 Choose a condition...</option>
+      </select>
+      
+      <select id="tradition" placeholder="Select Tradition">
+        <option value="">📚 Choose a remedy tradition...</option>
+      </select>
+      
+      <div class="input-group">
+        <button id="getRemedies">Get Remedies →</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Embedded JSON Data
+    const remediesData = {
+      "conditions": {
+        "flu": {
+          "arab_islamic": [
+            "Drink warm water with honey + black seed oil (habbat al barakah) 3x daily",
+            "Steam inhalation with olive oil + eucalyptus leaves",
+            "Rest + recite Al-Fatiha for 7 days (spiritual immune support)"
+          ],
+          "tcm": [
+            "Yin Qiao San (honeysuckle + forsythia) for early flu",
+            "Ginger + scallion + brown sugar decoction",
+            "Acupuncture LI4 (Hegu) + LU7 (Lieque)"
+          ],
+          "african": [
+            "Bitter kola + honey paste (West Africa)",
+            "Lemongrass + moringa leaf tea",
+            "Steam bath with eucalyptus and mugwort leaves"
+          ],
+          "asian_ayurveda": [
+            "Kadha (turmeric, ginger, black pepper, tulsi, honey)",
+            "Nasya oil in nostrils",
+            "Golden milk (haldi doodh) before bed"
+          ]
+        },
+        "common_cold": {
+          "arab_islamic": [
+            "Ajwa dates + warm milk",
+            "Soul soup (shorbat adas with cumin and turmeric)"
+          ],
+          "tcm": [
+            "Fresh ginger tea",
+            "Avoid dairy and cold drinks"
+          ],
+          "african": [
+            "Baobab fruit pulp + honey",
+            "Ginger + garlic + lemon (African fire cider)"
+          ],
+          "asian_ayurveda": [
+            "Tulsi (holy basil) tea with cardamom",
+            "Steam with camphor"
+          ]
+        },
+        "headache": {
+          "arab_islamic": [
+            "Cold compress with rose water + vinegar on forehead",
+            "Black seed oil rubbed on temples"
+          ],
+          "tcm": [
+            "Acupuncture GB20 (Fengchi)",
+            "Peppermint oil on temples"
+          ],
+          "african": [
+            "Chewing fresh ginger root",
+            "Clove powder paste on forehead"
+          ],
+          "asian_ayurveda": [
+            "Brahmi + jatamansi powder in warm water",
+            "Shirodhara (oil dripping on forehead)"
+          ]
+        },
+        "stomach_infection": {
+          "arab_islamic": [
+            "Prophetic medicine: 1 tsp black seed honey 3x/day",
+            "Cumin + carom seeds boiled water"
+          ],
+          "tcm": [
+            "Bao He Wan (for food stagnation)",
+            "Warm water with salt + sugar (oral rehydration)"
+          ],
+          "african": [
+            "Neem leaf tea (bitter but effective)",
+            "Unripe plantain peel powder in water"
+          ],
+          "asian_ayurveda": [
+            "Jeera water + asafoetida (hing)",
+            "Ginger + lemon + rock salt"
+          ]
+        },
+        "std": {
+          "arab_islamic": [
+            "Black seed oil + honey 3x daily",
+            "Pomegranate juice with turmeric"
+          ],
+          "tcm": [
+            "Rehmannia glutinosa (shu di huang) decoction",
+            "Acupuncture LV3 + KI3"
+          ],
+          "african": [
+            "Neem leaves boiled tea",
+            "Moringa + garlic paste"
+          ],
+          "asian_ayurveda": [
+            "Turmeric + ghee + honey",
+            "Brahmi oil massage"
+          ]
+        },
+        "acne": {
+          "arab_islamic": [
+            "Black seed oil face mask + honey",
+            "Rose water + turmeric paste"
+          ],
+          "tcm": [
+            "Bai He (lily bulb) + Gan Cao (licorice) tea",
+            "Face gua sha with jade stone"
+          ],
+          "african": [
+            "Shea butter + tea tree oil",
+            "Neem paste on affected areas"
+          ],
+          "asian_ayurveda": [
+            "Turmeric + sandalwood + rosewater paste",
+            "Neem oil massage at night"
+          ]
+        },
+        "eczema": {
+          "arab_islamic": [
+            "Black seed oil + coconut oil massage",
+            "Honey + oatmeal bath"
+          ],
+          "tcm": [
+            "Rehmannia + Shengdi cooling formula",
+            "Moxa stick treatment on affected areas"
+          ],
+          "african": [
+            "Shea butter + aloe vera",
+            "Cedarwood oil + cocoa butter blend"
+          ],
+          "asian_ayurveda": [
+            "Neem + turmeric + coconut oil paste",
+            "Brahmi oil abhyanga massage"
+          ]
+        },
+        "anxiety": {
+          "arab_islamic": [
+            "Dhikr (remembrance) + meditation",
+            "Chamomile + rose tea with honey"
+          ],
+          "tcm": [
+            "Gui Pi Tang (spleen nourishing formula)",
+            "Acupuncture HT7 (Shenmen) + PC6 (Neiguan)"
+          ],
+          "african": [
+            "Rooibos + lavender tea",
+            "Chamomile + passionflower blend"
+          ],
+          "asian_ayurveda": [
+            "Brahmi + Ashwagandha powder in warm milk",
+            "Shiro Abhyanga (head massage with brahmi oil)"
+          ]
+        },
+        "insomnia": {
+          "arab_islamic": [
+            "Warm milk + honey before bed",
+            "Recitation of Surah Al-Ahzab verse 9"
+          ],
+          "tcm": [
+            "Suan Zao Ren Tang (sour jujube formula)",
+            "Acupuncture anmian + HT7"
+          ],
+          "african": [
+            "Valerian root + passionflower tea",
+            "Chamomile + lemonbalm blend"
+          ],
+          "asian_ayurveda": [
+            "Ashwagandha + nutmeg in warm milk",
+            "Shiro Abhyanga at night"
+          ]
+        }
+      }
+    };
+
+    const chatMessages = document.getElementById('chatMessages');
+    const conditionDropdown = document.getElementById('condition');
+    const traditionDropdown = document.getElementById('tradition');
+    const getRemediesButton = document.getElementById('getRemedies');
+
+    // Initialize
+    function init() {
+      addBotMessage("👋 Hello! I'm the Remedies Bot. Select a condition and remedy tradition to get started!");
+      populateConditions();
+    }
+
+    // Add bot message to chat
+    function addBotMessage(text) {
+      const message = document.createElement('div');
+      message.className = 'message bot';
+      message.innerHTML = `<div class="message-content">${text}</div>`;
+      chatMessages.appendChild(message);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    // Add user message to chat
+    function addUserMessage(text) {
+      const message = document.createElement('div');
+      message.className = 'message user';
+      message.innerHTML = `<div class="message-content">${text}</div>`;
+      chatMessages.appendChild(message);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    // Add remedy box
+    function addRemedyBox(condition, tradition, remedies) {
+      const message = document.createElement('div');
+      message.className = 'message bot';
+      
+      let remedyHTML = `<div class="remedy-box">
+        <div class="remedy-title">💊 ${condition.replace(/_/g, ' ').toUpperCase()} - ${tradition.replace(/_/g, ' ').toUpperCase()}</div>`;
+      
+      remedies.forEach((remedy, index) => {
+        remedyHTML += `<div class="remedy-item">${index + 1}. ${remedy}</div>`;
+      });
+      
+      remedyHTML += `</div>`;
+      message.innerHTML = remedyHTML;
+      chatMessages.appendChild(message);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    // Populate conditions dropdown
+    function populateConditions() {
+      Object.keys(remediesData.conditions).forEach(condition => {
+        const option = document.createElement('option');
+        option.value = condition;
+        option.textContent = condition.replace(/_/g, ' ').toUpperCase();
+        conditionDropdown.appendChild(option);
+      });
+
+      conditionDropdown.addEventListener('change', populateTraditions);
+    }
+
+    // Populate traditions dropdown
+    function populateTraditions() {
+      traditionDropdown.innerHTML = '<option value="">📚 Choose a remedy tradition...</option>';
+      const selectedCondition = conditionDropdown.value;
+
+      if (selectedCondition && remediesData.conditions[selectedCondition]) {
+        Object.keys(remediesData.conditions[selectedCondition]).forEach(tradition => {
+          const option = document.createElement('option');
+          option.value = tradition;
+          option.textContent = tradition.replace(/_/g, ' ').toUpperCase();
+          traditionDropdown.appendChild(option);
+        });
+      }
+    }
+
+    // Get and display remedies
+    function showRemedies() {
+      const selectedCondition = conditionDropdown.value;
+      const selectedTradition = traditionDropdown.value;
+
+      if (!selectedCondition) {
+        addBotMessage("⚠️ Please select a condition first!");
+        return;
+      }
+
+      if (!selectedTradition) {
+        addBotMessage("⚠️ Please select a remedy tradition!");
+        return;
+      }
+
+      addUserMessage(`${selectedCondition.replace(/_/g, ' ').toUpperCase()} - ${selectedTradition.replace(/_/g, ' ').toUpperCase()}`);
+
+      const remedies = remediesData.conditions[selectedCondition][selectedTradition];
+
+      if (remedies && remedies.length > 0) {
+        addRemedyBox(selectedCondition, selectedTradition, remedies);
+      } else {
+        addBotMessage("❌ No remedies found for this selection.");
+      }
+    }
+
+    // Event listener
+    getRemediesButton.addEventListener('click', showRemedies);
+
+    // Allow Enter key to submit
+    traditionDropdown.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') showRemedies();
+    });
+
+    // Initialize on load
+    init();
+  </script>
+</body>
+</html>
