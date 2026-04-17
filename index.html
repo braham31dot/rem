@@ -405,44 +405,14 @@
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
             flex-shrink: 0;
             z-index: 100;
-            gap: 0.3rem;
+            gap: 0.5rem;
             transition: background 0.3s ease;
-            flex-wrap: wrap;
-        }
-
-        .header-content {
-            flex: 1;
-            text-align: center;
-            min-width: 0;
-            order: 2;
-        }
-
-        .chat-header h1 {
-            font-size: 1.2rem;
-            font-weight: 700;
-            margin: 0;
-            letter-spacing: -0.5px;
-        }
-
-        .chat-header p {
-            font-size: 0.65rem;
-            opacity: 0.85;
-            margin-top: 0.15rem;
-            font-weight: 500;
-        }
-
-        .header-buttons {
-            display: flex;
-            gap: 0.25rem;
-            flex-shrink: 0;
-            order: 3;
         }
 
         .header-left {
             display: flex;
-            gap: 0.25rem;
+            gap: 0.3rem;
             flex-shrink: 0;
-            order: 1;
         }
 
         .return-btn {
@@ -468,6 +438,33 @@
         .return-btn:active {
             transform: scale(0.92);
             background: rgba(255, 255, 255, 0.35);
+        }
+
+        .header-content {
+            flex: 1;
+            text-align: center;
+            min-width: 0;
+        }
+
+        .chat-header h1 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin: 0;
+            letter-spacing: -0.5px;
+        }
+
+        .chat-header p {
+            font-size: 0.65rem;
+            opacity: 0.85;
+            margin-top: 0.15rem;
+            font-weight: 500;
+        }
+
+        .header-buttons {
+            display: flex;
+            gap: 0.3rem;
+            flex-shrink: 0;
+            justify-content: center;
         }
 
         .lang-menu {
@@ -503,7 +500,8 @@
         .lang-dropdown {
             position: absolute;
             top: 45px;
-            right: 0;
+            left: 50%;
+            transform: translateX(-50%);
             background: var(--card);
             border: 1px solid var(--border);
             border-radius: 0.5rem;
@@ -575,7 +573,8 @@
         .color-dropdown {
             position: absolute;
             top: 45px;
-            right: 0;
+            left: 50%;
+            transform: translateX(-50%);
             background: var(--card);
             border: 1px solid var(--border);
             border-radius: 0.5rem;
@@ -784,15 +783,17 @@
 
         .form-wrapper {
             display: flex;
-            flex-direction: column;
+            flex-direction: row;
             gap: 0.4rem;
-            align-items: stretch;
+            align-items: flex-end;
         }
 
         .form-inputs {
             display: flex;
             flex-direction: column;
             gap: 0.4rem;
+            flex: 1;
+            min-width: 0;
         }
 
         .form-group {
@@ -848,23 +849,16 @@
             cursor: not-allowed;
         }
 
-        .send-btn-wrapper {
-            display: flex;
-            gap: 0.4rem;
-            align-items: center;
-            margin-top: 0.3rem;
-        }
-
         .send-btn {
-            width: 36px;
-            height: 36px;
+            width: 40px;
+            height: 40px;
             padding: 0;
             background: linear-gradient(135deg, var(--primary) 0%, var(--primary) 100%);
             filter: brightness(0.9);
             color: var(--primary-foreground);
             border: none;
             border-radius: 0.5rem;
-            font-size: 1rem;
+            font-size: 1.1rem;
             cursor: pointer;
             transition: all 0.2s;
             box-shadow: 0 2px 6px rgba(16, 185, 129, 0.25);
@@ -942,35 +936,32 @@
             }
         }
 
-        /* Responsive adjustments */
-        @media (max-width: 480px) {
-            .chat-header {
-                min-height: 80px;
+        /* Mobile optimizations */
+        @media (max-width: 768px) {
+            .form-wrapper {
+                flex-direction: row;
             }
 
-            .header-content {
-                width: 100%;
-                flex-basis: 100%;
+            .form-inputs {
+                flex: 1;
+                gap: 0.3rem;
+            }
+
+            .send-btn {
+                margin-top: 0;
+                margin-bottom: 0;
+            }
+
+            .chat-header {
+                gap: 0.3rem;
             }
 
             .chat-header h1 {
                 font-size: 1rem;
             }
 
-            .header-buttons,
-            .header-left {
-                flex-basis: auto;
-            }
-        }
-
-        @media (min-width: 768px) {
-            .return-btn,
-            .lang-btn,
-            .color-btn,
-            .theme-toggle {
-                width: 44px;
-                height: 44px;
-                font-size: 1.1rem;
+            .chat-header p {
+                font-size: 0.6rem;
             }
         }
 
@@ -1123,7 +1114,7 @@
                 privacyChanges: "التغييرات على سياسة الخصوصية",
                 privacyChangesText: "قد نحدث سياسة الخصوصية هذه. ستنعكس التغييرات الكبيرة في تاريخ \"آخر تحديث\".",
                 contact: "التواصل",
-                contactText: "لمخاوف الخصوصية، اتصل بنا من خلال قنوات دعم التطبيق.",
+                contactText: "لمخاوف الخصوصية، اتصل ب��ا من خلال قنوات دعم التطبيق.",
                 yourRights: "حقوقك",
                 yourRightsText: "نظراً لأننا لا نجمع بيانات، فلديك السيطرة الكاملة على استخدام معلوماتك في جميع الأوقات."
             },
@@ -1275,7 +1266,7 @@
                 offer6: "편안한 읽기를 위한 어두운/밝은 모드",
                 disclaimer: "중요한 면책 조항",
                 disclaimerText: "치료법 채팅은 교육 정보만 제공합니다. 이는 전문 의료 조언, 진단 또는 치료의 대체재가 아닙니다.",
-                disclaimerText2: "특히 심각한 건강 상태의 경우 새로운 치료법이�� 치료를 시작하기 전에 항상 자격 있는 의료 전문가와 상담하세요.",
+                disclaimerText2: "특히 심각한 건강 상태의 경우 새로운 치료법이나 치료를 시작하기 전에 항상 자격 있는 의료 전문가와 상담하세요.",
                 safetyFirst: "안전 우선",
                 safetyFirstText: "감염, 의료 응급 및 심각한 건강 문제의 경우 즉시 전문 의료 처치를 받으세요. 전통 치료법은 보완하지만 전문 치료를 대체하지 않습니다.",
                 development: "개발",
@@ -1346,9 +1337,9 @@
                 noAnalyticsText: "ما استفاده، موقعیت یا هیچ اطلاعات شخصی را ردگیری نمی کنیم. حریم خصوصی شما کاملا محفوظ است.",
                 noThirdParty: "بدون اشتراک گذاری از طرف ثالث",
                 noThirdPartyText: "داده های شما با شخص ثالث به اشتراک گذاری نمی شود. شبکه های تبلیغاتی یا خدمات خارجی استفاده نمی شود.",
-                offlineFirst: "اولویت آفلا��ن",
+                offlineFirst: "اولویت آفلاین",
                 offlineFirstText: "دردشة درمان کاملا به صورت آفلاین کار می کند. هیچ داده ای برای سرورهای خارجی ارسال نمی شود.",
-                localStorage: "ذخیره سازی ��حلی",
+                localStorage: "ذخیره سازی محلی",
                 localStorageText: "ما فقط تنظیمات تم (حالت تاریک / روشن) را برای راحتی در ذخیره سازی محلی مرورگر ذخیره می کنیم.",
                 security: "امنیت",
                 securityText: "از آنجا که هیچ داده ای جمع آوری یا منتقل نمی شود، هیچ ریسک امنیتی برای نقض داده ها وجود ندارد.",
@@ -1379,7 +1370,7 @@
                 "flu": "생강차에 꿀과 레몬을 섞어 사용하세요. 마늘은 항균 특성이 있습니다. 휴식을 취하고 수분을 유지하세요.",
             },
             fa: {
-                "allergies": "عسل محلی ممکن است واکنش ها را کاهش دهد. مواد غذایی غنی شده از کوئر��یتین مانند پیاز کمک می کند.",
+                "allergies": "عسل محلی ممکن است واکنش ها را کاهش دهد. مواد غذایی غنی شده از کوئرسیتین مانند پیاز کمک می کند.",
                 "flu": "از چای زنجبیل با عسل و لیمو استفاده کنید. سیر دارای خصوصیات ضد میکروبی است. استراحت و ماندن آبی ضروری است.",
             }
         };
@@ -2017,11 +2008,9 @@
                                         </div>
                                     </div>
                                     
-                                    <div class="send-btn-wrapper">
-                                        <button type="submit" class="send-btn" ${appState.isTyping ? 'disabled' : ''}>
-                                            ${appState.isTyping ? '⏳' : '📨'}
-                                        </button>
-                                    </div>
+                                    <button type="submit" class="send-btn" ${appState.isTyping ? 'disabled' : ''}>
+                                        ${appState.isTyping ? '⏳' : '📨'}
+                                    </button>
                                 </div>
                             </form>
                         </div>
