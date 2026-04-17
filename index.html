@@ -23,7 +23,6 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="Remedy Chat">
-    <meta name="apple-mobile-web-app-status-bar" content="black-translucent">
     
     <style>
         :root {
@@ -102,6 +101,219 @@
             flex-direction: column;
         }
 
+        /* ========== WELCOME/INTRO PAGE ========== */
+        .welcome-screen {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            min-height: 100%;
+            background: linear-gradient(135deg, #10b981 0%, #8b5cf6 100%);
+            color: white;
+            padding: 2rem 1.5rem;
+            padding-top: calc(3rem + var(--safe-area-inset-top));
+            padding-bottom: calc(2rem + var(--safe-area-inset-bottom));
+            text-align: center;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .welcome-logo {
+            font-size: 5rem;
+            margin-bottom: 1rem;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        .welcome-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            letter-spacing: -1px;
+        }
+
+        .welcome-subtitle {
+            font-size: 0.95rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+            font-weight: 500;
+        }
+
+        .welcome-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .welcome-section {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem;
+            border-radius: 1.25rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            text-align: left;
+        }
+
+        .welcome-section h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .welcome-section p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            line-height: 1.5;
+        }
+
+        .welcome-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .welcome-btn {
+            padding: 0.6rem 1.2rem;
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid white;
+            color: white;
+            border-radius: 2rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+
+        .welcome-btn:active {
+            transform: scale(0.95);
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .welcome-main-btn {
+            padding: 1rem 2rem;
+            background: white;
+            color: #10b981;
+            border: none;
+            border-radius: 2rem;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .welcome-main-btn:active {
+            transform: scale(0.96);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        /* ========== ABOUT/PRIVACY PAGES ========== */
+        .info-page {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            background-color: var(--background);
+        }
+
+        .info-header {
+            background: linear-gradient(135deg, #10b981 0%, #8b5cf6 100%);
+            color: white;
+            padding: calc(1rem + var(--safe-area-inset-top)) 1rem 1rem 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .info-header h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .back-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            transition: all 0.2s;
+        }
+
+        .back-btn:active {
+            transform: scale(0.92);
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .info-content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 1.5rem;
+            padding-bottom: calc(1.5rem + var(--safe-area-inset-bottom));
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .info-content h2 {
+            font-size: 1.3rem;
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+            color: var(--primary);
+        }
+
+        .info-content h2:first-child {
+            margin-top: 0;
+        }
+
+        .info-content p {
+            margin-bottom: 1rem;
+            line-height: 1.6;
+            color: var(--foreground);
+        }
+
+        .info-content ul {
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .info-content li {
+            margin-bottom: 0.5rem;
+            line-height: 1.6;
+        }
+
+        /* ========== CHAT PAGE ========== */
         .loading-screen {
             display: flex;
             align-items: center;
@@ -266,7 +478,7 @@
         .message-content.warning {
             background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
             color: #92400e;
-            border-left: 4px solid #f59e0b;
+            border-left: 3px solid #f59e0b;
             border-radius: 1rem;
         }
 
@@ -311,8 +523,8 @@
         .chat-form {
             background-color: var(--card);
             border-top: 1px solid var(--border);
-            padding: 1rem;
-            padding-bottom: calc(1rem + var(--safe-area-inset-bottom));
+            padding: 0.75rem;
+            padding-bottom: calc(0.75rem + var(--safe-area-inset-bottom));
             box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.08);
             flex-shrink: 0;
         }
@@ -320,14 +532,14 @@
         .form-group {
             display: flex;
             flex-direction: column;
-            gap: 0.75rem;
-            margin-bottom: 0.75rem;
+            gap: 0.65rem;
+            margin-bottom: 0.65rem;
         }
 
         .form-row {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 0.75rem;
+            gap: 0.65rem;
         }
 
         @media (max-width: 480px) {
@@ -348,24 +560,8 @@
                 font-size: 0.7rem;
             }
 
-            .chat-form {
-                padding: 0.75rem;
-                padding-bottom: calc(0.75rem + var(--safe-area-inset-bottom));
-            }
-
-            .theme-toggle {
-                width: 40px;
-                height: 40px;
-                font-size: 1.2rem;
-            }
-
             label {
                 font-size: 0.8rem;
-            }
-
-            button {
-                padding: 0.75rem 1rem;
-                font-size: 0.9rem;
             }
         }
 
@@ -374,34 +570,34 @@
             font-size: 0.85rem;
             font-weight: 600;
             color: var(--foreground);
-            margin-bottom: 0.35rem;
+            margin-bottom: 0.25rem;
             -webkit-user-select: none;
             user-select: none;
         }
 
         select {
             width: 100%;
-            padding: 0.7rem 0.75rem;
+            padding: 0.6rem 0.65rem;
             border: 1px solid var(--input);
-            border-radius: 0.65rem;
+            border-radius: 0.55rem;
             background-color: var(--card);
             color: var(--foreground);
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             cursor: pointer;
             transition: all 0.2s;
             appearance: none;
-            padding-right: 2.5rem;
+            padding-right: 2.25rem;
             background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
             background-repeat: no-repeat;
-            background-position: right 0.5rem center;
-            background-size: 1.25rem;
+            background-position: right 0.4rem center;
+            background-size: 1.1rem;
             font-weight: 500;
         }
 
         select:focus {
             outline: none;
             border-color: var(--primary);
-            box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.15);
+            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
         }
 
         select:active {
@@ -413,30 +609,32 @@
             cursor: not-allowed;
         }
 
-        button {
+        .send-btn {
             width: 100%;
-            padding: 0.9rem 1.5rem;
+            padding: 0.7rem;
             background: linear-gradient(135deg, #10b981 0%, #059669 100%);
             color: var(--primary-foreground);
             border: none;
-            border-radius: 0.65rem;
-            font-size: 0.95rem;
-            font-weight: 600;
+            border-radius: 0.55rem;
+            font-size: 1.2rem;
             cursor: pointer;
             transition: all 0.2s;
-            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.25);
+            box-shadow: 0 3px 10px rgba(16, 185, 129, 0.25);
             -webkit-user-select: none;
             user-select: none;
             font-weight: 700;
-            letter-spacing: 0.3px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 44px;
         }
 
-        button:active:not(:disabled) {
+        .send-btn:active:not(:disabled) {
             transform: scale(0.96);
             box-shadow: 0 2px 6px rgba(16, 185, 129, 0.15);
         }
 
-        button:disabled {
+        .send-btn:disabled {
             opacity: 0.6;
             cursor: not-allowed;
         }
@@ -473,12 +671,10 @@
             user-select: none;
         }
 
-        /* Disable pull-to-refresh on mobile */
         body {
             overscroll-behavior: none;
         }
 
-        /* Better touch feedback */
         button:focus {
             outline: none;
         }
@@ -494,7 +690,7 @@
             }
             
             .chat-form {
-                padding-bottom: max(1rem, env(safe-area-inset-bottom));
+                padding-bottom: max(0.75rem, env(safe-area-inset-bottom));
             }
         }
 
@@ -523,6 +719,11 @@
     <div id="root"></div>
 
     <script>
+        // ============================================
+        // APP PAGES
+        // ============================================
+        let currentPage = 'welcome'; // 'welcome', 'chat', 'about', 'privacy'
+
         // ============================================
         // THEME MANAGEMENT
         // ============================================
@@ -593,129 +794,177 @@
             "blood pressure support",
             "blood sugar support",
             "menstrual support",
-            "immune support"
+            "immune support",
+            "insomnia",
+            "migraine",
+            "muscle soreness",
+            "inflammation",
+            "bloating",
+            "food poisoning",
+            "common cold",
+            "sore eyes",
+            "ear pain",
+            "mouth ulcers",
+            "psoriasis",
+            "vitiligo"
         ];
 
-        const SAFETY_WARNING = "⚠️ Disclaimer: This guidance is for educational purposes only. Always consult with a healthcare professional before starting any new remedy or treatment. These traditional remedies are not substitutes for medical care.";
+        const SAFETY_WARNING = "💡 Always consult with a healthcare professional before starting any remedy. These traditional remedies are educational and not medical substitutes.";
 
         const remedies = {
             African: {
-                "STD": "⚠️ IMPORTANT MEDICAL ADVISORY\n\nWhile African traditional medicine offers various supportive remedies, sexually transmitted infections REQUIRE professional medical diagnosis and treatment.\n\nTraditional African approaches for STI support:\n\n🌿 Supportive Care:\n• Ginger and garlic tea boosts immune response\n• Turmeric with honey strengthens immunity\n• Moringa leaf tea provides vital nutrients\n• Adequate rest and hydration are essential\n• Nutritious diet with vegetables and proteins\n\n⚠️ HOWEVER - You MUST:\n✓ See a doctor for proper testing\n✓ Get professional diagnosis\n✓ Use prescribed medical treatment\n✓ Inform partners for their health\n✓ Follow medical advice completely\n\nTraditional remedies complement but NEVER replace professional medical treatment for STIs.",
-                "flu": "Use ginger tea with honey and lemon to soothe symptoms. Garlic has antimicrobial properties. Rest and stay hydrated. Traditional African medicine suggests elderberry extracts.",
-                "acne": "Apply tea tree oil or neem oil topically. Turmeric paste mixed with coconut oil can reduce inflammation. Drink plenty of water and avoid sugary foods.",
-                "anxiety": "Chamomile and lavender tea can promote relaxation. Practice deep breathing exercises. Ashwagandha root tea is traditionally used to calm the nervous system.",
-                "stress": "Lemongrass tea is traditionally calming. Meditation and deep breathing help. Traditional African healers recommend spending time in nature.",
-                "fatigue": "Ginseng root decoction can boost energy. Ensure adequate sleep and nutrition. B-vitamins through whole grains and legumes are essential.",
-                "weight loss": "Drink green tea regularly. Include more whole grains, legumes, and vegetables. Exercise regularly and reduce processed foods.",
-                "headache": "Peppermint tea can relieve tension headaches. Apply a warm compress. Stay hydrated and rest in a dark room.",
-                "sore throat": "Gargle with warm salt water. Honey and ginger tea soothes the throat. Slippery elm bark is traditionally used.",
-                "digestion": "Ginger and fennel tea aid digestion. Eat slowly and chew thoroughly. Avoid heavy meals before bedtime.",
-                "sleep": "Passionflower tea promotes sleep. Avoid caffeine after 2 PM. Keep a consistent sleep schedule.",
-                "cramps": "Ginger or cinnamon tea can help ease cramps. Apply heat to the affected area. Magnesium-rich foods like pumpkin seeds help.",
-                "cough": "Honey and thyme tea is a traditional remedy. Garlic has expectorant properties. Stay hydrated with warm liquids.",
-                "fever": "Drink fever-reducing herb teas like willow bark. Cool compresses on the forehead help. Ensure proper hydration.",
-                "cold": "Elderberry syrup boosts immunity. Vitamin C from citrus fruits and ginger tea help. Rest and hydration are key.",
-                "sinus congestion": "Steam inhalation with eucalyptus oil opens airways. Ginger and horseradish are natural decongestants. Stay hydrated.",
-                "allergies": "Local honey may reduce allergic reactions over time. Quercetin-rich foods like onions and apples help. Reduce dairy temporarily.",
-                "nausea": "Ginger tea is highly effective for nausea. Mint tea also helps. Eat small, frequent meals.",
-                "constipation": "Drink plenty of water and warm liquids. Flaxseeds and chia seeds add fiber. Prune juice is a traditional remedy.",
-                "diarrhea": "Ginger and turmeric tea help restore balance. Eat bland foods like rice and bananas. Stay hydrated with electrolyte drinks.",
-                "heartburn": "Aloe vera juice can soothe the digestive tract. Avoid spicy foods. Eat smaller meals more frequently.",
-                "toothache": "Clove oil applied to the tooth provides relief. Salt water rinse helps. See a dentist if pain persists.",
-                "back pain": "Turmeric with ginger reduces inflammation. Apply heat to the area. Gentle stretching and rest help.",
-                "joint pain": "Ginger and turmeric tea is anti-inflammatory. Apply warm compresses. Light exercise maintains flexibility.",
-                "dry skin": "Coconut oil or shea butter moisturizes well. Drink plenty of water. Avoid harsh soaps.",
-                "eczema": "Coconut oil or neem oil applied topically helps. Turmeric paste reduces inflammation. Avoid irritants and allergens.",
-                "dandruff": "Tea tree oil mixed with coconut oil helps. Apple cider vinegar rinse can help. Avoid stress.",
-                "hair loss": "Massage scalp with neem or coconut oil. Eat protein-rich foods. Reduce stress through meditation.",
-                "minor cuts": "Clean with salt water. Apply honey for antimicrobial protection. Turmeric paste can be applied.",
-                "minor burns": "Apply cool water immediately, not ice. Aloe vera gel soothes and heals. Avoid oils initially.",
-                "dehydration": "Drink water frequently. Coconut water replenishes electrolytes. Herbal teas with minerals help.",
-                "blood pressure support": "Garlic reduces blood pressure naturally. Hibiscus tea is beneficial. Exercise regularly and reduce sodium.",
-                "blood sugar support": "Cinnamon helps regulate blood sugar. Fenugreek seeds are traditionally used. Eat complex carbohydrates.",
-                "menstrual support": "Ginger tea eases cramps. Turmeric reduces inflammation. Iron-rich foods like spinach help.",
-                "immune support": "Elderberry, echinacea, and astragalus boost immunity. Garlic and ginger are essential. Sleep and exercise matter."
+                "STD": "⚠️ Medical Note: STDs require professional medical care.\n\nTraditional supportive approaches:\n• Ginger and garlic tea boosts immune response\n• Turmeric with honey strengthens immunity\n• Moringa leaf tea provides vital nutrients\n• Adequate rest and hydration\n• Nutritious diet with vegetables\n\nIMPORTANT: You must see a doctor for testing, diagnosis, and treatment. Inform partners for their health. Early treatment prevents complications.",
+                "flu": "Use ginger tea with honey and lemon. Garlic has antimicrobial properties. Rest and stay hydrated. African medicine suggests elderberry extracts.",
+                "acne": "Apply tea tree oil or neem oil topically. Turmeric paste with coconut oil reduces inflammation. Drink plenty of water.",
+                "anxiety": "Chamomile and lavender tea promote relaxation. Practice deep breathing. Ashwagandha root tea calms the nervous system.",
+                "stress": "Lemongrass tea is calming. Meditation and deep breathing help. Spend time in nature.",
+                "fatigue": "Ginseng root decoction boosts energy. Ensure adequate sleep and nutrition. B-vitamins through whole grains help.",
+                "weight loss": "Drink green tea regularly. Include whole grains, legumes, vegetables. Exercise regularly.",
+                "headache": "Peppermint tea relieves tension headaches. Apply warm compress. Stay hydrated.",
+                "sore throat": "Gargle with warm salt water. Honey and ginger tea soothes. Slippery elm bark helps.",
+                "digestion": "Ginger and fennel tea aid digestion. Eat slowly and chew thoroughly.",
+                "sleep": "Passionflower tea promotes sleep. Avoid caffeine after 2 PM. Keep consistent sleep schedule.",
+                "cramps": "Ginger or cinnamon tea eases cramps. Apply heat. Magnesium-rich foods like pumpkin seeds help.",
+                "cough": "Honey and thyme tea. Garlic has expectorant properties. Stay hydrated.",
+                "fever": "Willow bark tea reduces fever. Cool compresses on forehead. Ensure hydration.",
+                "cold": "Elderberry syrup boosts immunity. Vitamin C from citrus. Rest and hydration.",
+                "sinus congestion": "Steam inhalation with eucalyptus oil. Ginger and horseradish decongest. Stay hydrated.",
+                "allergies": "Local honey may reduce reactions. Quercetin-rich foods like onions help.",
+                "nausea": "Ginger tea is highly effective. Mint tea helps. Eat small, frequent meals.",
+                "constipation": "Drink plenty of water. Flaxseeds and chia seeds add fiber. Prune juice helps.",
+                "diarrhea": "Ginger and turmeric tea restore balance. Eat bland foods like rice and bananas.",
+                "heartburn": "Aloe vera juice soothes. Avoid spicy foods. Eat smaller meals.",
+                "toothache": "Clove oil provides relief. Salt water rinse helps. See a dentist.",
+                "back pain": "Turmeric with ginger reduces inflammation. Apply heat. Gentle stretching helps.",
+                "joint pain": "Ginger and turmeric tea reduces inflammation. Warm compresses help.",
+                "dry skin": "Coconut oil or shea butter moisturizes. Drink plenty of water.",
+                "eczema": "Coconut or neem oil helps. Turmeric paste reduces inflammation.",
+                "dandruff": "Tea tree oil with coconut oil. Apple cider vinegar rinse. Avoid stress.",
+                "hair loss": "Massage scalp with neem oil. Eat protein-rich foods. Reduce stress.",
+                "minor cuts": "Clean with salt water. Apply honey for protection. Turmeric paste helps.",
+                "minor burns": "Cool water immediately. Aloe vera gel soothes and heals.",
+                "dehydration": "Drink water frequently. Coconut water replenishes electrolytes.",
+                "blood pressure support": "Garlic reduces blood pressure. Hibiscus tea is beneficial. Exercise and reduce sodium.",
+                "blood sugar support": "Cinnamon helps regulate. Fenugreek seeds are traditional.",
+                "menstrual support": "Ginger tea eases cramps. Turmeric reduces inflammation. Iron-rich foods help.",
+                "immune support": "Elderberry, echinacea, astragalus boost immunity. Garlic and ginger essential.",
+                "insomnia": "Passionflower tea. Warm milk with honey. Consistent sleep schedule.",
+                "migraine": "Feverfew tea. Cool compress on forehead. Dark, quiet room.",
+                "muscle soreness": "Turmeric and ginger tea. Massage with oils. Rest adequately.",
+                "inflammation": "Ginger and turmeric combination. Anti-inflammatory diet. Rest.",
+                "bloating": "Ginger and fennel tea. Peppermint aids. Light walking helps.",
+                "food poisoning": "Ginger tea. Activated charcoal. Stay hydrated. See doctor if severe.",
+                "common cold": "Garlic and ginger soup. Vitamin C foods. Rest and hydration.",
+                "sore eyes": "Chamomile compress. Avoid screens. Rest eyes. See doctor if persistent.",
+                "ear pain": "Warm sesame oil drops. Ginger tea. Avoid loud noise.",
+                "mouth ulcers": "Honey application. Salt water rinse. Avoid spicy foods.",
+                "psoriasis": "Turmeric paste. Coconut oil. Anti-inflammatory diet.",
+                "vitiligo": "Ginger and turmeric. Vitamin B12 foods. Sunscreen daily."
             },
             Asian: {
-                "STD": "⚠️ IMPORTANT MEDICAL ADVISORY\n\nWhile Asian traditional medicine offers various supportive remedies, sexually transmitted infections REQUIRE professional medical diagnosis and treatment.\n\nTraditional Asian approaches for STI support:\n\n🌿 Supportive Care:\n• Ginseng strengthens vital energy (Qi)\n• Goji berries nourish and support wellness\n• Astragalus root boosts immune function\n• Reishi mushroom supports resilience\n• Adequate rest and hydration essential\n\n⚠️ HOWEVER - You MUST:\n✓ See a doctor for proper testing\n✓ Get professional diagnosis\n✓ Use prescribed medical treatment\n✓ Inform partners for their health\n✓ Follow medical advice completely\n\nTraditional remedies complement but NEVER replace professional medical treatment for STIs.",
-                "flu": "Ginger and turmeric soup with chicken broth is traditional. Garlic and onions have antiviral properties. Rest is essential.",
-                "acne": "Green tea reduces sebum production. Turmeric masks have been used for centuries. Witch hazel helps balance skin.",
-                "anxiety": "Meditation and tai chi practice. Ginseng supports nervous system. Chamomile and jasmine tea are calming.",
-                "stress": "Practice yoga or tai chi regularly. Ashwagandha (Indian ginseng) is traditionally used. Breathing exercises help.",
-                "fatigue": "Ginseng root tea boosts energy. Qi-tonifying herbs like astragalus help. Adequate sleep is crucial.",
-                "weight loss": "Green tea increases metabolism. Practice tai chi for gentle exercise. Reduce white rice and sugar.",
-                "headache": "Acupressure at temples and neck. Herbal tea with chrysanthemum flowers helps. Rest in quiet environments.",
-                "sore throat": "Honey and ginger tea soothes. Licorice root is traditionally used in Asian medicine. Warm salt water gargles help.",
-                "digestion": "Ginger aids stomach function. Fennel seeds after meals help digestion. Eat slowly and mindfully.",
-                "sleep": "Jujube tea is traditionally calming. Acupuncture may help. Keep consistent sleep schedules.",
-                "cramps": "Ginger and cinnamon tea helps. Apply heat with moxa. Massage acupressure points.",
-                "cough": "Honey and pear soup is a traditional remedy. Fritillaria bulb decoction helps. Avoid dairy temporarily.",
-                "fever": "Cool herbal tea with honeysuckle and forsythia. Reduce inflammatory foods. Stay hydrated.",
-                "cold": "Ginger, garlic, and scallion soup boosts immunity. Vitamin C is essential. Rest adequately.",
-                "sinus congestion": "Acupressure relieves congestion. Ginger steam inhalation helps. Avoid cold foods.",
-                "allergies": "Chrysanthemum and goji berry tea helps. Local honey may reduce reactions. Avoid trigger foods.",
-                "nausea": "Ginger is most effective. Acupressure point on wrist helps. Mint tea also provides relief.",
-                "constipation": "Prune juice is traditional. Increase fiber gradually. Drink warm liquids in morning.",
-                "diarrhea": "Ginger and rice soup restores balance. Avoid fatty foods. Electrolyte drinks are important.",
-                "heartburn": "Licorice root tea soothes. Eat smaller meals. Avoid spicy and greasy foods.",
-                "toothache": "Clove oil applied locally helps. Salt water with turmeric rinse. See a dentist.",
-                "back pain": "Turmeric and ginger reduce inflammation. Acupuncture is effective. Gentle stretching helps.",
-                "joint pain": "Angelica root decoction is traditional. Ginger and turmeric reduce inflammation. Warm compresses help.",
-                "dry skin": "Sesame oil moisturizes deeply. Eat moistening foods like pears. Avoid harsh products.",
-                "eczema": "Turmeric reduces inflammation. Sesame oil soothes. Avoid known irritants.",
-                "dandruff": "Scalp massage with sesame oil. Avoid stress. Herbal rinses help.",
-                "hair loss": "Ginseng and goji berries support health. Scalp massage improves circulation. Reduce stress.",
-                "minor cuts": "Apply honey for healing. Turmeric paste has antimicrobial properties. Keep clean.",
-                "minor burns": "Cool water first, then aloe vera. Avoid oils initially. Keep clean and protected.",
-                "dehydration": "Drink water with ginger. Herbal soups replenish fluids. Coconut water helps.",
-                "blood pressure support": "Garlic and ginger reduce pressure. Regular tai chi practice helps. Reduce sodium intake.",
-                "blood sugar support": "Bitter melon tea is traditional. Ginseng supports metabolism. Exercise regularly.",
-                "menstrual support": "Ginger and turmeric ease cramps. Red dates support blood. Get adequate rest.",
-                "immune support": "Ginseng boosts immunity. Goji berries are nutrient-dense. Mushrooms like reishi support wellness."
+                "STD": "⚠️ Medical Note: STDs require professional medical care.\n\nTraditional supportive approaches:\n• Ginseng strengthens vital energy (Qi)\n• Goji berries nourish and support\n• Astragalus boosts immune function\n• Reishi mushroom supports resilience\n• Adequate rest and hydration\n\nIMPORTANT: You must see a doctor for testing, diagnosis, and treatment. Inform partners for their health. Early treatment prevents complications.",
+                "flu": "Ginger and turmeric soup with broth. Garlic and onions have antiviral properties. Rest.",
+                "acne": "Green tea reduces sebum. Turmeric masks traditional. Witch hazel balances skin.",
+                "anxiety": "Meditation and tai chi. Ginseng supports nervous system. Jasmine tea calms.",
+                "stress": "Yoga or tai chi practice. Ashwagandha is traditional. Breathing exercises help.",
+                "fatigue": "Ginseng root tea boosts energy. Astragalus helps. Adequate sleep crucial.",
+                "weight loss": "Green tea increases metabolism. Tai chi exercise. Reduce white rice.",
+                "headache": "Acupressure at temples. Chrysanthemum flower tea. Rest quietly.",
+                "sore throat": "Honey and ginger tea. Licorice root traditional. Warm salt water gargles.",
+                "digestion": "Ginger aids stomach. Fennel seeds after meals. Eat mindfully.",
+                "sleep": "Jujube tea calms. Acupuncture may help. Consistent sleep times.",
+                "cramps": "Ginger and cinnamon tea. Apply heat with moxa. Acupressure helps.",
+                "cough": "Honey and pear soup. Fritillaria bulb decoction. Avoid dairy.",
+                "fever": "Honeysuckle and forsythia tea. Reduce inflammatory foods. Stay hydrated.",
+                "cold": "Ginger, garlic, scallion soup. Vitamin C essential. Rest.",
+                "sinus congestion": "Acupressure relief. Ginger steam. Avoid cold foods.",
+                "allergies": "Chrysanthemum and goji tea. Local honey may help.",
+                "nausea": "Ginger most effective. Acupressure wrist point. Mint tea.",
+                "constipation": "Prune juice traditional. Increase fiber. Warm liquids morning.",
+                "diarrhea": "Ginger and rice soup. Avoid fatty foods. Electrolytes important.",
+                "heartburn": "Licorice root tea. Smaller meals. Avoid spicy foods.",
+                "toothache": "Clove oil applied. Salt water rinse. See dentist.",
+                "back pain": "Turmeric and ginger. Acupuncture effective. Gentle stretching.",
+                "joint pain": "Angelica root decoction. Ginger and turmeric reduce. Warmth soothes.",
+                "dry skin": "Sesame oil deep moisture. Moistening foods like pears.",
+                "eczema": "Turmeric reduces inflammation. Sesame oil soothes.",
+                "dandruff": "Sesame oil massage. Avoid stress. Herbal rinses.",
+                "hair loss": "Ginseng and goji berries. Scalp massage. Reduce stress.",
+                "minor cuts": "Honey healing. Turmeric paste antimicrobial. Keep clean.",
+                "minor burns": "Cool water first. Aloe vera. Keep clean and protected.",
+                "dehydration": "Water with ginger. Herbal soups. Coconut water.",
+                "blood pressure support": "Garlic and ginger. Tai chi practice. Reduce sodium.",
+                "blood sugar support": "Bitter melon tea. Ginseng aids. Exercise regular.",
+                "menstrual support": "Ginger and turmeric ease. Red dates support. Rest.",
+                "immune support": "Ginseng immunity boost. Goji berries nutrient-dense. Reishi mushroom.",
+                "insomnia": "Jujube tea. Acupuncture. Consistent schedule.",
+                "migraine": "Acupressure points. Ginger tea. Cool compress.",
+                "muscle soreness": "Ginger turmeric tea. Massage. Rest.",
+                "inflammation": "Turmeric ginger combination. Anti-inflammatory diet.",
+                "bloating": "Ginger fennel tea. Peppermint. Light walking.",
+                "food poisoning": "Ginger strong. Herbal remedies. Hydration. Doctor if severe.",
+                "common cold": "Ginger garlic soup. Vitamin C. Rest hydration.",
+                "sore eyes": "Chrysanthemum tea compress. Rest eyes. Doctor if persistent.",
+                "ear pain": "Warm ginger oil. Acupressure. Avoid loud noise.",
+                "mouth ulcers": "Herbal rinse. Honey. Avoid spicy.",
+                "psoriasis": "Turmeric paste. Herbal oil. Anti-inflammatory diet.",
+                "vitiligo": "Ginger turmeric. B12 foods. Sunscreen protection."
             },
             Islamic: {
-                "STD": "⚠️ IMPORTANT MEDICAL ADVISORY\n\nWhile Islamic traditional medicine offers various supportive remedies, sexually transmitted infections REQUIRE professional medical diagnosis and treatment.\n\nTraditional Islamic approaches for STI support:\n\n🌿 Supportive Care:\n• Black seed (Nigella sativa) - highly valued in Islamic medicine\n• Honey for immune and healing support\n• Prayer and spiritual wellness\n• Adequate rest and hydration\n• Nutritious diet with halal foods\n\n⚠️ HOWEVER - You MUST:\n✓ See a doctor for proper testing\n✓ Get professional diagnosis\n✓ Use prescribed medical treatment\n✓ Inform partners for their health\n✓ Follow medical advice completely\n\nIn Islamic teaching, seeking professional medical care is a duty (Fard). Traditional remedies complement but NEVER replace professional medical treatment for STIs.",
-                "flu": "Black seed (nigella sativa) has powerful immune properties. Honey and ginger tea is traditional. Stay hydrated and rest.",
-                "acne": "Rose water cleanses gently. Honey masks are beneficial. Avoid excessive oil and keep skin clean.",
-                "anxiety": "Quranic recitation and prayer bring peace. Dates provide energy and calm. Meditation helps.",
-                "stress": "Prayer and mindfulness reduce stress. Dates are naturally calming. Spend time with family.",
-                "fatigue": "Dates provide natural energy. Black seed oil boosts vitality. Rest and proper nutrition matter.",
-                "weight loss": "Olive oil aids metabolism. Eat dates in moderation. Exercise and balance diet.",
-                "headache": "Rose water has cooling properties. Peppermint tea helps. Rest in quiet spaces.",
-                "sore throat": "Honey is highly valued in Islamic medicine. Ginger and lemon tea soothes. Warm liquids help.",
-                "digestion": "Dates aid digestion. Ginger and cumin tea helps. Eat deliberately and chew thoroughly.",
-                "sleep": "Dates consumed before sleep help rest. Prayer brings peace. Maintain regular sleep times.",
-                "cramps": "Ginger and cinnamon tea helps. Apply warm compresses. Dates provide minerals.",
-                "cough": "Black seed syrup with honey is traditional. Thyme tea soothes. Stay hydrated.",
-                "fever": "Olive oil reduces fever when applied. Cool herbal tea helps. Rest is essential.",
-                "cold": "Black seed boosts immunity powerfully. Garlic and ginger help. Vitamin C intake matters.",
-                "sinus congestion": "Steam inhalation with herbs helps. Eucalyptus oil opens airways. Stay hydrated.",
-                "allergies": "Local honey may reduce reactions. Black seed oil can help. Avoid known triggers.",
-                "nausea": "Ginger is most effective. Dates provide comfort. Mint tea also helps.",
-                "constipation": "Dates are natural laxatives. Drink water regularly. Olive oil aids movement.",
-                "diarrhea": "Ginger and rice water restore balance. Dates provide nutrients. Stay hydrated.",
-                "heartburn": "Milk with honey soothes. Avoid spicy foods. Eat smaller meals.",
-                "toothache": "Clove oil is effective. Salt water with turmeric rinse. See a dentist.",
-                "back pain": "Olive oil massage helps. Ginger reduces inflammation. Gentle stretching aids.",
-                "joint pain": "Black seed oil reduces inflammation. Ginger and turmeric help. Warmth soothes.",
-                "dry skin": "Olive oil moisturizes deeply. Rose water hydrates. Avoid harsh products.",
-                "eczema": "Olive oil reduces inflammation. Rose water soothes. Avoid irritants.",
-                "dandruff": "Olive oil scalp massage helps. Avoid stress. Regular washing helps.",
-                "hair loss": "Black seed oil strengthens hair. Scalp massage improves health. Reduce stress.",
-                "minor cuts": "Honey promotes healing powerfully. Keep clean. Avoid touching.",
-                "minor burns": "Cool water first, then honey. Aloe vera helps. Keep protected.",
-                "dehydration": "Drink water regularly. Dates provide minerals. Herbal tea helps.",
-                "blood pressure support": "Garlic reduces pressure. Regular prayer brings calm. Reduce salt intake.",
-                "blood sugar support": "Dates in moderation help balance. Black seed oil assists. Exercise matters.",
-                "menstrual support": "Ginger eases cramps. Iron-rich foods help. Dates support wellness.",
-                "immune support": "Black seed is highly valued for immunity. Dates provide nutrition. Rest and prayer strengthen."
+                "STD": "⚠️ Medical Note: STDs require professional medical care.\n\nTraditional supportive approaches:\n• Black seed (Nigella sativa) valued\n• Honey immune support\n• Prayer and spiritual wellness\n• Adequate rest and hydration\n• Halal nutritious diet\n\nIMPORTANT: Seeking medical care is a religious duty. You must see a doctor for testing, diagnosis, and treatment. Inform partners for their health.",
+                "flu": "Black seed powerful immune properties. Honey and ginger tea. Stay hydrated.",
+                "acne": "Rose water cleanses gently. Honey masks beneficial.",
+                "anxiety": "Prayer brings peace. Dates provide comfort. Meditation.",
+                "stress": "Prayer and mindfulness. Dates naturally calm. Family time.",
+                "fatigue": "Dates natural energy. Black seed oil vitality. Rest.",
+                "weight loss": "Olive oil metabolism. Dates moderation. Exercise.",
+                "headache": "Rose water cooling. Peppermint tea. Rest quiet.",
+                "sore throat": "Honey highly valued. Ginger lemon tea. Warm liquids.",
+                "digestion": "Dates aid digestion. Ginger cumin tea. Deliberate eating.",
+                "sleep": "Dates before sleep. Prayer peace. Regular times.",
+                "cramps": "Ginger cinnamon tea. Warm compresses. Dates minerals.",
+                "cough": "Black seed syrup honey. Thyme tea. Stay hydrated.",
+                "fever": "Olive oil application. Cool herbal tea. Rest.",
+                "cold": "Black seed powerful immunity. Garlic ginger. Vitamin C.",
+                "sinus congestion": "Steam inhalation herbs. Eucalyptus opens. Hydration.",
+                "allergies": "Local honey reactions. Black seed oil. Avoid triggers.",
+                "nausea": "Ginger effective. Dates comfort. Mint tea.",
+                "constipation": "Dates natural laxatives. Water regular. Olive oil.",
+                "diarrhea": "Ginger rice water. Dates nutrients. Hydrated.",
+                "heartburn": "Milk honey soothes. Avoid spicy. Smaller meals.",
+                "toothache": "Clove oil effective. Turmeric rinse. Dentist.",
+                "back pain": "Olive oil massage. Ginger inflammation. Stretching.",
+                "joint pain": "Black seed oil inflammation. Ginger turmeric. Warmth.",
+                "dry skin": "Olive oil deep. Rose water hydration.",
+                "eczema": "Olive oil reduces. Rose water soothes.",
+                "dandruff": "Olive oil massage. Stress avoid. Regular washing.",
+                "hair loss": "Black seed oil hair. Scalp massage. Stress reduce.",
+                "minor cuts": "Honey healing powerful. Keep clean.",
+                "minor burns": "Cool water first. Honey aloe. Protected.",
+                "dehydration": "Water regularly. Dates minerals. Herbal tea.",
+                "blood pressure support": "Garlic pressure. Prayer calm. Salt reduce.",
+                "blood sugar support": "Dates moderation balance. Black seed. Exercise.",
+                "menstrual support": "Ginger cramps. Iron foods. Dates wellness.",
+                "immune support": "Black seed immunity valued. Dates nutrition. Prayer.",
+                "insomnia": "Dates sleep. Prayer peace. Consistent schedule.",
+                "migraine": "Prayer relief. Rose water cool. Dark room.",
+                "muscle soreness": "Olive oil massage. Ginger tea. Rest.",
+                "inflammation": "Black seed ginger. Anti-inflammatory diet.",
+                "bloating": "Ginger fennel tea. Dates. Light walking.",
+                "food poisoning": "Ginger strong. Herbal remedies. Hydration. Doctor if severe.",
+                "common cold": "Black seed garlic. Ginger. Vitamin C. Rest hydration.",
+                "sore eyes": "Rose water compress. Rest eyes. Doctor if persistent.",
+                "ear pain": "Warm olive oil. Prayer. Avoid loud noise.",
+                "mouth ulcers": "Honey application. Salt rinse. Avoid spicy.",
+                "psoriasis": "Turmeric olive. Herbal oil. Anti-inflammatory.",
+                "vitiligo": "Black seed ginger. B12 foods. Sunscreen daily."
             }
         };
 
         function getRemedy(tradition, concern) {
             const advice = remedies[tradition]?.[concern];
             if (!advice) {
-                return "Please rest, stay hydrated, and consult a healthcare professional if symptoms persist.";
+                return "Please rest, stay hydrated, and consult a healthcare professional.";
             }
             
             if (concern === "STD") {
@@ -747,11 +996,154 @@
         // RENDERING FUNCTIONS
         // ============================================
 
+        function goToChat() {
+            currentPage = 'chat';
+            appState.loading = false;
+            renderApp();
+        }
+
+        function goToAbout() {
+            currentPage = 'about';
+            renderApp();
+        }
+
+        function goToPrivacy() {
+            currentPage = 'privacy';
+            renderApp();
+        }
+
+        function goToWelcome() {
+            currentPage = 'welcome';
+            renderApp();
+        }
+
         function renderApp() {
             const root = document.getElementById("root");
             const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
             const themeIcon = currentTheme === 'light' ? '🌙' : '☀️';
             
+            if (currentPage === 'welcome') {
+                root.innerHTML = `
+                    <div class="welcome-screen">
+                        <div class="welcome-logo">🌿</div>
+                        <div>
+                            <h1 class="welcome-title">Remedy Chat</h1>
+                            <p class="welcome-subtitle">Traditional Wellness Guidance</p>
+                        </div>
+
+                        <div class="welcome-content">
+                            <div class="welcome-section">
+                                <h3>🌍 Three Traditions</h3>
+                                <p>African, Asian, and Islamic traditional medicine wisdom in one app.</p>
+                            </div>
+                            
+                            <div class="welcome-section">
+                                <h3>💡 Learning Tool</h3>
+                                <p>Explore traditional wellness remedies for educational purposes.</p>
+                            </div>
+
+                            <div class="welcome-section">
+                                <h3>⚕️ Not Medical Advice</h3>
+                                <p>Always consult healthcare professionals for diagnosis and treatment.</p>
+                            </div>
+                        </div>
+
+                        <div class="welcome-buttons">
+                            <button class="welcome-btn" onclick="window.goToAbout()">About Us</button>
+                            <button class="welcome-btn" onclick="window.goToPrivacy()">Privacy</button>
+                        </div>
+
+                        <button class="welcome-main-btn" onclick="window.goToChat()">
+                            Get Started <span style="font-size: 1.3rem;">→</span>
+                        </button>
+                    </div>
+                `;
+                return;
+            }
+
+            if (currentPage === 'about') {
+                root.innerHTML = `
+                    <div class="info-page">
+                        <div class="info-header">
+                            <h1>About Us</h1>
+                            <button class="back-btn" onclick="window.goToWelcome()">←</button>
+                        </div>
+                        <div class="info-content scrollable">
+                            <h2>About Remedy Chat</h2>
+                            <p>Remedy Chat is an educational application designed to share traditional wellness wisdom from three major healing traditions: African, Asian, and Islamic medicine.</p>
+
+                            <h2>Our Mission</h2>
+                            <p>We aim to provide accessible information about traditional remedies while emphasizing the importance of professional medical care.</p>
+
+                            <h2>What We Offer</h2>
+                            <ul>
+                                <li>Remedies from African traditional medicine</li>
+                                <li>Asian Ayurvedic and herbal wisdom</li>
+                                <li>Islamic traditional health practices</li>
+                                <li>Support for 45+ common health concerns</li>
+                                <li>Dark/Light mode for comfortable reading</li>
+                            </ul>
+
+                            <h2>Important Disclaimer</h2>
+                            <p>Remedy Chat provides educational information only. It is NOT a substitute for professional medical advice, diagnosis, or treatment.</p>
+
+                            <p>Always consult with qualified healthcare professionals before starting any new remedy or treatment, especially for serious health conditions.</p>
+
+                            <h2>Safety First</h2>
+                            <p>For sexually transmitted infections (STDs), medical emergencies, and serious health concerns, seek immediate professional medical care. Traditional remedies complement but never replace professional treatment.</p>
+
+                            <h2>Development</h2>
+                            <p>This app was created to bring traditional wellness knowledge to a modern audience through an accessible, user-friendly platform.</p>
+                        </div>
+                    </div>
+                `;
+                return;
+            }
+
+            if (currentPage === 'privacy') {
+                root.innerHTML = `
+                    <div class="info-page">
+                        <div class="info-header">
+                            <h1>Privacy Policy</h1>
+                            <button class="back-btn" onclick="window.goToWelcome()">←</button>
+                        </div>
+                        <div class="info-content scrollable">
+                            <h2>Privacy Policy</h2>
+                            <p><strong>Last Updated:</strong> ${new Date().getFullYear()}</p>
+
+                            <h2>Data Collection</h2>
+                            <p>Remedy Chat does not collect any personal data. All information processing happens locally on your device.</p>
+
+                            <h2>No Analytics</h2>
+                            <p>We do not track your usage, location, or any personal information. Your privacy is completely protected.</p>
+
+                            <h2>No Third-Party Sharing</h2>
+                            <p>Your data is not shared with any third parties. No advertising networks or external services are used.</p>
+
+                            <h2>Offline First</h2>
+                            <p>Remedy Chat works entirely offline. No data is sent to external servers. All remedy content is stored locally.</p>
+
+                            <h2>Local Storage</h2>
+                            <p>We only store your theme preference (light/dark mode) in your browser's local storage for convenience.</p>
+
+                            <h2>Security</h2>
+                            <p>Since no data is collected or transmitted, there are no security risks from data breaches.</p>
+
+                            <h2>Changes to Privacy Policy</h2>
+                            <p>We may update this privacy policy. Significant changes will be reflected in the "Last Updated" date.</p>
+
+                            <h2>Contact</h2>
+                            <p>For privacy concerns, contact us through the app support channels.</p>
+
+                            <h2>Your Rights</h2>
+                            <p>Since we collect no data, you have complete control over your information usage at all times.</p>
+                        </div>
+                    </div>
+                `;
+                return;
+            }
+
+            // CHAT PAGE
             if (appState.loading) {
                 root.innerHTML = `
                     <div class="loading-screen">
@@ -800,10 +1192,10 @@
                                 <div class="form-row">
                                     <div>
                                         <label for="tradition">
-                                            Select Tradition <span class="required-indicator">*</span>
+                                            Tradition <span class="required-indicator">*</span>
                                         </label>
                                         <select id="tradition" required>
-                                            <option value="">Choose a tradition...</option>
+                                            <option value="">Choose...</option>
                                             ${TRADITIONS.map(t => `
                                                 <option value="${t}" ${appState.tradition === t ? 'selected' : ''}>${t}</option>
                                             `).join('')}
@@ -812,10 +1204,10 @@
                                     
                                     <div>
                                         <label for="concern">
-                                            Select Concern <span class="required-indicator">*</span>
+                                            Concern <span class="required-indicator">*</span>
                                         </label>
                                         <select id="concern" required>
-                                            <option value="">Choose a concern...</option>
+                                            <option value="">Choose...</option>
                                             ${CONCERNS.map(c => `
                                                 <option value="${c}" ${appState.concern === c ? 'selected' : ''}>${c}</option>
                                             `).join('')}
@@ -824,8 +1216,8 @@
                                 </div>
                             </div>
                             
-                            <button type="submit" ${appState.isTyping ? 'disabled' : ''}>
-                                ${appState.isTyping ? 'Getting Guidance...' : '✨ Seek Guidance'}
+                            <button type="submit" class="send-btn" ${appState.isTyping ? 'disabled' : ''}>
+                                ${appState.isTyping ? '⏳' : '📨'}
                             </button>
                         </form>
                     </div>
@@ -839,34 +1231,40 @@
                 }
             }, 0);
             
-            document.getElementById("tradition").addEventListener("change", (e) => {
-                appState.tradition = e.target.value;
-            });
+            const traditionalSelect = document.getElementById("tradition");
+            const concernSelect = document.getElementById("concern");
             
-            document.getElementById("concern").addEventListener("change", (e) => {
-                appState.concern = e.target.value;
-            });
+            if (traditionalSelect) {
+                traditionalSelect.addEventListener("change", (e) => {
+                    appState.tradition = e.target.value;
+                });
+            }
+            
+            if (concernSelect) {
+                concernSelect.addEventListener("change", (e) => {
+                    appState.concern = e.target.value;
+                });
+            }
         }
 
         function handleSubmit(e) {
             e.preventDefault();
             
             if (!appState.tradition || !appState.concern) {
-                alert("Please select both a tradition and a concern.");
+                alert("Please select both tradition and concern.");
                 return;
             }
             
             const userMsg = {
                 id: Date.now().toString(),
                 role: "user",
-                content: `I am looking for ${appState.tradition} traditional guidance for ${appState.concern}.`
+                content: `${appState.tradition} guidance for ${appState.concern}`
             };
             
             appState.messages.push(userMsg);
             appState.isTyping = true;
             renderApp();
             
-            // Haptic feedback on iOS
             if (navigator.vibrate) {
                 navigator.vibrate(10);
             }
@@ -901,14 +1299,8 @@
         window.addEventListener("DOMContentLoaded", () => {
             initTheme();
             renderApp();
-            
-            setTimeout(() => {
-                appState.loading = false;
-                renderApp();
-            }, 2000);
         });
 
-        // Handle system theme change
         window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
             if (!localStorage.getItem('remedy-theme')) {
                 document.documentElement.setAttribute('data-theme', e.matches ? 'dark' : 'light');
@@ -916,8 +1308,13 @@
             }
         });
 
+        // Expose functions globally
         window.toggleTheme = toggleTheme;
         window.handleSubmit = handleSubmit;
+        window.goToChat = goToChat;
+        window.goToAbout = goToAbout;
+        window.goToPrivacy = goToPrivacy;
+        window.goToWelcome = goToWelcome;
     </script>
 </body>
 </html>
