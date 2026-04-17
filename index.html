@@ -528,24 +528,33 @@
             }
         }
 
-        .chat-form {
+        .chat-form-wrapper {
+            display: flex;
+            flex-direction: column;
             background-color: var(--card);
             border-top: 1px solid var(--border);
+            max-height: 40vh;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+            flex-shrink: 0;
+        }
+
+        .chat-form {
             padding: 0.5rem;
             padding-bottom: calc(0.5rem + var(--safe-area-inset-bottom));
             box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.08);
-            flex-shrink: 0;
         }
 
         .form-wrapper {
             display: flex;
+            flex-direction: column;
             gap: 0.4rem;
-            align-items: flex-end;
+            align-items: stretch;
         }
 
         .form-inputs {
-            flex: 1;
             display: flex;
+            flex-direction: column;
             gap: 0.4rem;
         }
 
@@ -553,7 +562,6 @@
             display: flex;
             flex-direction: column;
             gap: 0.25rem;
-            flex: 1;
             min-width: 0;
         }
 
@@ -602,9 +610,16 @@
             cursor: not-allowed;
         }
 
+        .send-btn-wrapper {
+            display: flex;
+            gap: 0.4rem;
+            align-items: center;
+            margin-top: 0.3rem;
+        }
+
         .send-btn {
-            width: 34px;
-            height: 34px;
+            width: 100%;
+            height: 32px;
             padding: 0;
             background: linear-gradient(135deg, #10b981 0%, #059669 100%);
             color: var(--primary-foreground);
@@ -621,7 +636,6 @@
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
-            min-height: 34px;
             line-height: 1;
         }
 
@@ -1179,32 +1193,36 @@
                         ` : ''}
                     </div>
                     
-                    <div class="chat-form">
-                        <form id="remedyForm" onsubmit="handleSubmit(event)">
-                            <div class="form-wrapper">
-                                <div class="form-inputs">
-                                    <div class="form-group">
-                                        <label for="tradition">Tradition <span class="required-indicator">*</span></label>
-                                        <select id="tradition" required>
-                                            <option value="">Choose...</option>
-                                            ${TRADITIONS.map(t => `<option value="${t}" ${appState.tradition === t ? 'selected' : ''}>${t}</option>`).join('')}
-                                        </select>
+                    <div class="chat-form-wrapper">
+                        <div class="chat-form">
+                            <form id="remedyForm" onsubmit="handleSubmit(event)">
+                                <div class="form-wrapper">
+                                    <div class="form-inputs">
+                                        <div class="form-group">
+                                            <label for="tradition">Tradition <span class="required-indicator">*</span></label>
+                                            <select id="tradition" required>
+                                                <option value="">Choose...</option>
+                                                ${TRADITIONS.map(t => `<option value="${t}" ${appState.tradition === t ? 'selected' : ''}>${t}</option>`).join('')}
+                                            </select>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label for="concern">Concern <span class="required-indicator">*</span></label>
+                                            <select id="concern" required>
+                                                <option value="">Choose...</option>
+                                                ${CONCERNS.map(c => `<option value="${c}" ${appState.concern === c ? 'selected' : ''}>${c}</option>`).join('')}
+                                            </select>
+                                        </div>
                                     </div>
                                     
-                                    <div class="form-group">
-                                        <label for="concern">Concern <span class="required-indicator">*</span></label>
-                                        <select id="concern" required>
-                                            <option value="">Choose...</option>
-                                            ${CONCERNS.map(c => `<option value="${c}" ${appState.concern === c ? 'selected' : ''}>${c}</option>`).join('')}
-                                        </select>
+                                    <div class="send-btn-wrapper">
+                                        <button type="submit" class="send-btn" ${appState.isTyping ? 'disabled' : ''}>
+                                            ${appState.isTyping ? '⏳' : '📨'}
+                                        </button>
                                     </div>
                                 </div>
-                                
-                                <button type="submit" class="send-btn" ${appState.isTyping ? 'disabled' : ''}>
-                                    ${appState.isTyping ? '⏳' : '📨'}
-                                </button>
-                            </div>
-                        </form>
+                            </form>
+                        </div>
                     </div>
                 </div>
             `;
