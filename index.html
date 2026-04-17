@@ -19,7 +19,7 @@
     <link rel="manifest" href="data:application/json,{%22name%22:%22Remedy%20Chat%22,%22short_name%22:%22Remedy%22,%22start_url%22:%22/%22,%22display%22:%22standalone%22,%22background_color%22:%22%23ffffff%22,%22theme_color%22:%2310b981%22,%22orientation%22:%22portrait-primary%22}">
     
     <meta name="theme-color" content="#10b981">
-    <meta name="description" content="Traditional wellness guidance from African, Asian, and Islamic healing traditions.">
+    <meta name="description" content="Traditional wellness guidance from African, Asian, Islamic, and Arabic healing traditions.">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="Remedy Chat">
@@ -120,6 +120,7 @@
             animation: fadeIn 0.5s ease-in;
             overflow-y: auto;
             -webkit-overflow-scrolling: touch;
+            overscroll-behavior: contain;
         }
 
         @keyframes fadeIn {
@@ -286,6 +287,7 @@
             padding: 1.25rem;
             padding-bottom: calc(1.25rem + var(--safe-area-inset-bottom));
             -webkit-overflow-scrolling: touch;
+            overscroll-behavior: contain;
         }
 
         .info-content h2 {
@@ -536,6 +538,7 @@
             max-height: 40vh;
             overflow-y: auto;
             -webkit-overflow-scrolling: touch;
+            overscroll-behavior: contain;
             flex-shrink: 0;
         }
 
@@ -618,20 +621,19 @@
         }
 
         .send-btn {
-            width: 100%;
-            height: 32px;
+            width: 36px;
+            height: 36px;
             padding: 0;
             background: linear-gradient(135deg, #10b981 0%, #059669 100%);
             color: var(--primary-foreground);
             border: none;
-            border-radius: 0.35rem;
-            font-size: 0.95rem;
+            border-radius: 0.5rem;
+            font-size: 1rem;
             cursor: pointer;
             transition: all 0.2s;
             box-shadow: 0 2px 6px rgba(16, 185, 129, 0.25);
             -webkit-user-select: none;
             user-select: none;
-            font-weight: 700;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -766,7 +768,7 @@
         // REMEDY DATA & CONFIGURATION
         // ============================================
 
-        const TRADITIONS = ["African", "Asian", "Islamic"];
+        const TRADITIONS = ["African", "Asian", "Islamic", "Arabic"];
 
         const CONCERNS = [
             "STD",
@@ -815,7 +817,11 @@
             "ear pain",
             "mouth ulcers",
             "psoriasis",
-            "vitiligo"
+            "vitiligo",
+            "skin care",
+            "teeth care",
+            "nails care",
+            "hair care"
         ];
 
         const SAFETY_WARNING = "💡 Always consult with a healthcare professional before starting any remedy. These traditional remedies are educational and not medical substitutes.";
@@ -868,7 +874,11 @@
                 "ear pain": "Warm sesame oil drops. Ginger tea. Avoid loud noise.",
                 "mouth ulcers": "Honey application. Salt water rinse. Avoid spicy foods.",
                 "psoriasis": "Turmeric paste. Coconut oil. Anti-inflammatory diet.",
-                "vitiligo": "Ginger and turmeric. Vitamin B12 foods. Sunscreen daily."
+                "vitiligo": "Ginger and turmeric. Vitamin B12 foods. Sunscreen daily.",
+                "skin care": "Use shea butter or coconut oil daily. Neem oil for cleansing. Turmeric masks for glow. Drink plenty of water. Avoid harsh soaps.",
+                "teeth care": "Clove oil strengthens gums. Miswak stick traditional cleaning. Salt water rinses. Avoid sugary foods. Chew herbs like neem.",
+                "nails care": "Massage with coconut or castor oil. Eat protein-rich foods. Keep nails dry. Avoid harsh chemicals. Biotin from foods helps.",
+                "hair care": "Neem oil treatments strengthen hair. Coconut oil deep conditioning. Massage scalp regularly. Eat leafy greens. Avoid heat styling."
             },
             Asian: {
                 "STD": "⚠️ Medical Note: STDs require professional medical care.\n\nTraditional supportive approaches:\n• Ginseng strengthens vital energy (Qi)\n• Goji berries nourish and support\n• Astragalus boosts immune function\n• Reishi mushroom supports resilience\n• Adequate rest and hydration\n\nIMPORTANT: You must see a doctor for testing, diagnosis, and treatment. Inform partners for their health.",
@@ -917,7 +927,11 @@
                 "ear pain": "Warm ginger oil. Acupressure. Avoid loud noise.",
                 "mouth ulcers": "Herbal rinse. Honey. Avoid spicy.",
                 "psoriasis": "Turmeric paste. Herbal oil. Anti-inflammatory diet.",
-                "vitiligo": "Ginger turmeric. B12 foods. Sunscreen protection."
+                "vitiligo": "Ginger turmeric. B12 foods. Sunscreen protection.",
+                "skin care": "Ginseng essence brightens. Green tea antioxidants. Sesame oil nourishes. Jade roller massage. Consistent routine.",
+                "teeth care": "Herbal tooth powders. Ginger massage gums. Chew stimulans. Green tea rinses. Avoid extreme temperatures.",
+                "nails care": "Goji berries strengthen. Biotin-rich foods. Oil massage. Avoid harsh tools. Regular care.",
+                "hair care": "Ginseng promotes growth. Sesame oil treatments. Scalp acupressure. Avoid stress. Herbal rinses."
             },
             Islamic: {
                 "STD": "⚠️ Medical Note: STDs require professional medical care.\n\nTraditional supportive approaches:\n• Black seed (Nigella sativa) valued\n• Honey immune support\n• Prayer and spiritual wellness\n• Adequate rest and hydration\n• Halal nutritious diet\n\nIMPORTANT: Seeking medical care is a religious duty. See a doctor for testing, diagnosis, and treatment.",
@@ -966,7 +980,64 @@
                 "ear pain": "Warm olive oil. Prayer. Avoid loud noise.",
                 "mouth ulcers": "Honey application. Salt rinse. Avoid spicy.",
                 "psoriasis": "Turmeric olive. Herbal oil. Anti-inflammatory.",
-                "vitiligo": "Black seed ginger. B12 foods. Sunscreen daily."
+                "vitiligo": "Black seed ginger. B12 foods. Sunscreen daily.",
+                "skin care": "Rose water toner. Honey masks weekly. Olive oil moisturizer. Black seed oil treatments. Prayer and gratitude.",
+                "teeth care": "Miswak stick brushing. Rose water rinses. Clove oil. Avoid sweet drinks. Regular maintenance.",
+                "nails care": "Black seed oil massage. Henna strengthens. Olive oil treatments. Iron-rich diet. Regular trimming.",
+                "hair care": "Black seed oil therapy. Rose water rinses. Henna natural color. Scalp massage. Avoid harsh products."
+            },
+            Arabic: {
+                "STD": "⚠️ Medical Note: STDs require professional medical care.\n\nTraditional supportive approaches:\n• Fenugreek boosts immune function\n• Dates and honey strengthen body\n• Garlic and ginger powerful immune support\n• Rest and proper hydration essential\n• Nutritious whole foods diet\n\nIMPORTANT: Professional medical care is mandatory. See a doctor for testing, diagnosis, and proper treatment.",
+                "flu": "Fenugreek tea boosts immunity. Honey and dates provide energy. Garlic soup strengthens defenses. Rest thoroughly.",
+                "acne": "Rose water cleansing ritual. Henna masks reduce inflammation. Olive oil moisturizing treatment.",
+                "anxiety": "Prayer calms the spirit. Chamomile and rose tea soothe. Deep breathing exercises help.",
+                "stress": "Mindfulness and prayer. Dates provide comfort. Spend time with family.",
+                "fatigue": "Dates boost natural energy. Fenugreek tea revitalizes. Ensure adequate sleep.",
+                "weight loss": "Olive oil in moderation. Dates satisfy cravings. Regular walking exercise.",
+                "headache": "Rose water compress cool. Peppermint tea relief. Dark quiet environment.",
+                "sore throat": "Honey highly valued remedy. Ginger lemon tea soothing. Warm herbal liquids.",
+                "digestion": "Dates aid stomach. Fenugreek cumin tea aids. Mindful eating practice.",
+                "sleep": "Warm milk with honey. Dates before sleep. Consistent bedtime.",
+                "cramps": "Ginger cinnamon tea effective. Warm compress application. Dates minerals help.",
+                "cough": "Honey powerful remedy. Black seed syrup. Thyme tea soothing.",
+                "fever": "Cool herbal teas help. Olive oil application. Complete rest needed.",
+                "cold": "Garlic and ginger soup. Fenugreek tea. Vitamin C foods essential.",
+                "sinus congestion": "Steam inhalation therapy. Eucalyptus oil opens. Stay hydrated.",
+                "allergies": "Local honey reduces reactions. Avoid known triggers. Rose water soothes.",
+                "nausea": "Ginger most effective. Dates comfort stomach. Mint tea aids.",
+                "constipation": "Dates natural solution. Water intake regular. Olive oil helps.",
+                "diarrhea": "Ginger rice soup. Dates provide nutrients. Hydration critical.",
+                "heartburn": "Milk honey soothes. Avoid spicy foods. Smaller portions.",
+                "toothache": "Clove oil relief. Turmeric rinse. Dental visit needed.",
+                "back pain": "Olive oil massage warmth. Ginger tea reduces inflammation. Gentle stretching.",
+                "joint pain": "Fenugreek oil treatment. Ginger turmeric tea. Warmth and rest.",
+                "dry skin": "Olive oil deep moisturizing. Rose water hydrating. Natural treatments.",
+                "eczema": "Olive oil soothes. Rose water calms. Anti-inflammatory herbs.",
+                "dandruff": "Olive oil scalp massage. Avoid stress factors. Regular washing.",
+                "hair loss": "Olive oil treatments regular. Fenugreek paste scalp. Stress reduction.",
+                "minor cuts": "Honey antiseptic powerful. Turmeric paste protective. Keep clean.",
+                "minor burns": "Cool water immediately. Honey healing application. Protect from infection.",
+                "dehydration": "Water intake regular. Dates minerals. Herbal teas hydrate.",
+                "blood pressure support": "Garlic reduces pressure. Olive oil beneficial. Salt moderation.",
+                "blood sugar support": "Fenugreek regulates levels. Dates moderation. Exercise regular.",
+                "menstrual support": "Ginger eases discomfort. Iron-rich foods. Dates wellness support.",
+                "immune support": "Black seed valued. Dates nutrition rich. Honey protective. Prayer beneficial.",
+                "insomnia": "Warm milk dates. Prayer peaceful. Consistent schedule.",
+                "migraine": "Rose water compress. Ginger tea. Quiet dark space.",
+                "muscle soreness": "Olive oil massage warmth. Ginger tea reduces. Rest recovery.",
+                "inflammation": "Ginger turmeric combination. Anti-inflammatory diet. Rest essential.",
+                "bloating": "Ginger fennel tea. Dates minerals. Light walking helps.",
+                "food poisoning": "Ginger strong remedy. Herbal treatments. Hydration crucial. Doctor if severe.",
+                "common cold": "Garlic ginger soup. Fenugreek tea. Vitamin C essential. Rest hydration.",
+                "sore eyes": "Rose water compress cool. Rest eyes. Doctor persistent cases.",
+                "ear pain": "Warm olive oil drops. Prayer comfort. Avoid loud noise.",
+                "mouth ulcers": "Honey application. Rose water rinse. Avoid spicy foods.",
+                "psoriasis": "Turmeric olive oil. Henna treatment. Anti-inflammatory diet.",
+                "vitiligo": "Fenugreek treatment. Black seed oil. Sunscreen daily protection.",
+                "skin care": "Rose water morning evening. Olive oil night treatment. Henna masks weekly. Honey weekly. Natural approach.",
+                "teeth care": "Miswak traditional stick. Rose water rinses. Clove oil treatment. Avoid sugary items. Regular care.",
+                "nails care": "Olive oil massage daily. Henna strengthening. Dates nutrients. Natural approach. Regular trimming.",
+                "hair care": "Olive oil treatments. Henna natural color. Fenugreek scalp. Rose water rinses. Stress management."
             }
         };
 
@@ -995,7 +1066,7 @@
                 {
                     id: "init",
                     role: "bot",
-                    content: "🌿 Welcome to Remedy Chat\n\nI'm here to share traditional wellness wisdom from African, Asian, and Islamic healing traditions.\n\nWhat kind of guidance are you seeking today?"
+                    content: "🌿 Welcome to Remedy Chat\n\nI'm here to share traditional wellness wisdom from African, Asian, Islamic, and Arabic healing traditions.\n\nWhat kind of guidance are you seeking today?"
                 }
             ],
             isTyping: false
@@ -1040,8 +1111,8 @@
 
                         <div class="welcome-content-wrapper">
                             <div class="welcome-section">
-                                <h3>🌍 Three Traditions</h3>
-                                <p>African, Asian, and Islamic traditional medicine wisdom in one app.</p>
+                                <h3>🌍 Four Traditions</h3>
+                                <p>African, Asian, Islamic, and Arabic traditional medicine wisdom in one app.</p>
                             </div>
                             
                             <div class="welcome-section">
@@ -1077,7 +1148,7 @@
                         </div>
                         <div class="info-content scrollable">
                             <h2>About Remedy Chat</h2>
-                            <p>Remedy Chat is an educational application designed to share traditional wellness wisdom from three major healing traditions: African, Asian, and Islamic medicine.</p>
+                            <p>Remedy Chat is an educational application designed to share traditional wellness wisdom from four major healing traditions: African, Asian, Islamic, and Arabic medicine.</p>
 
                             <h2>Our Mission</h2>
                             <p>We aim to provide accessible information about traditional remedies while emphasizing the importance of professional medical care.</p>
@@ -1087,7 +1158,8 @@
                                 <li>Remedies from African traditional medicine</li>
                                 <li>Asian Ayurvedic and herbal wisdom</li>
                                 <li>Islamic traditional health practices</li>
-                                <li>Support for 45+ common health concerns</li>
+                                <li>Arabic traditional healing knowledge</li>
+                                <li>Support for 50+ health and beauty concerns</li>
                                 <li>Dark/Light mode for comfortable reading</li>
                             </ul>
 
