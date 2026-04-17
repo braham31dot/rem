@@ -122,39 +122,72 @@
         .chat-header {
             background: linear-gradient(135deg, #10b981 0%, #8b5cf6 100%);
             color: white;
-            padding: 1.5rem 1rem;
-            text-align: center;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
             -webkit-user-select: none;
             user-select: none;
         }
 
+        .header-content {
+            flex: 1;
+            text-align: center;
+        }
+
         .chat-header h1 {
-            font-size: 1.875rem;
+            font-size: 1.5rem;
             font-weight: bold;
             margin: 0;
         }
 
         .chat-header p {
-            font-size: 0.875rem;
+            font-size: 0.75rem;
             opacity: 0.9;
             margin-top: 0.25rem;
+        }
+
+        .theme-toggle {
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            color: white;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+
+        .theme-toggle:active {
+            transform: scale(0.95);
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .theme-toggle:hover {
+            background: rgba(255, 255, 255, 0.3);
         }
 
         .chat-messages {
             flex: 1;
             overflow-y: auto;
-            padding: 1.5rem 1rem;
+            padding: 1rem;
             display: flex;
             flex-direction: column;
-            gap: 1rem;
+            gap: 0.75rem;
             -webkit-user-select: text;
             user-select: text;
         }
 
         .message {
             display: flex;
-            gap: 0.75rem;
+            gap: 0.5rem;
             animation: slideIn 0.3s ease-out;
         }
 
@@ -174,12 +207,13 @@
         }
 
         .message-content {
-            max-width: 80%;
-            padding: 0.75rem 1rem;
+            max-width: 85%;
+            padding: 0.65rem 0.85rem;
             border-radius: 0.75rem;
             word-wrap: break-word;
             white-space: pre-wrap;
-            line-height: 1.5;
+            line-height: 1.4;
+            font-size: 0.95rem;
         }
 
         .message.bot .message-content {
@@ -203,13 +237,13 @@
 
         .typing-indicator {
             display: flex;
-            gap: 0.25rem;
-            padding: 0.75rem 1rem;
+            gap: 0.3rem;
+            padding: 0.65rem 0.85rem;
         }
 
         .typing-dot {
-            width: 8px;
-            height: 8px;
+            width: 7px;
+            height: 7px;
             border-radius: 50%;
             background-color: var(--muted);
             animation: typing 1.4s infinite;
@@ -230,45 +264,65 @@
             }
             30% {
                 opacity: 1;
-                transform: translateY(-10px);
+                transform: translateY(-8px);
             }
         }
 
         .chat-form {
             background-color: var(--card);
             border-top: 1px solid var(--border);
-            padding: 1.5rem;
+            padding: 1rem;
             box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.05);
         }
 
         .form-group {
             display: flex;
             flex-direction: column;
-            gap: 1rem;
-            margin-bottom: 1rem;
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
         }
 
         .form-row {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 1rem;
+            gap: 0.75rem;
         }
 
-        @media (max-width: 640px) {
+        @media (max-width: 480px) {
             .form-row {
                 grid-template-columns: 1fr;
             }
             
             .message-content {
-                max-width: 90%;
+                max-width: 92%;
+                font-size: 0.9rem;
             }
             
             .chat-header h1 {
-                font-size: 1.5rem;
+                font-size: 1.25rem;
+            }
+
+            .chat-header p {
+                font-size: 0.7rem;
             }
 
             .chat-form {
-                padding: 1rem;
+                padding: 0.75rem;
+            }
+
+            .theme-toggle {
+                width: 40px;
+                height: 40px;
+                font-size: 1.25rem;
+            }
+
+            label {
+                font-size: 0.8rem;
+            }
+
+            button {
+                padding: 0.7rem 1rem;
+                font-size: 0.95rem;
             }
         }
 
@@ -277,21 +331,28 @@
             font-size: 0.875rem;
             font-weight: 600;
             color: var(--foreground);
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.35rem;
             -webkit-user-select: none;
             user-select: none;
         }
 
         select {
             width: 100%;
-            padding: 0.75rem;
+            padding: 0.65rem;
             border: 1px solid var(--input);
-            border-radius: 0.5rem;
+            border-radius: 0.45rem;
             background-color: var(--card);
             color: var(--foreground);
-            font-size: 1rem;
+            font-size: 0.95rem;
             cursor: pointer;
             transition: all 0.2s;
+            appearance: none;
+            padding-right: 2rem;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 0.5rem center;
+            background-size: 1.25rem;
+            padding-right: 2.5rem;
         }
 
         select:focus {
@@ -311,8 +372,8 @@
             background-color: var(--primary);
             color: var(--primary-foreground);
             border: none;
-            border-radius: 0.5rem;
-            font-size: 1rem;
+            border-radius: 0.45rem;
+            font-size: 0.95rem;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.2s;
@@ -321,14 +382,8 @@
             user-select: none;
         }
 
-        button:hover:not(:disabled) {
-            background-color: #059669;
-            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
-            transform: translateY(-2px);
-        }
-
         button:active:not(:disabled) {
-            transform: translateY(0);
+            transform: scale(0.98);
         }
 
         button:disabled {
@@ -342,10 +397,11 @@
 
         .scrollable {
             scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
         }
 
         .scrollable::-webkit-scrollbar {
-            width: 8px;
+            width: 6px;
         }
 
         .scrollable::-webkit-scrollbar-track {
@@ -354,11 +410,17 @@
 
         .scrollable::-webkit-scrollbar-thumb {
             background: var(--border);
-            border-radius: 4px;
+            border-radius: 3px;
         }
 
         .scrollable::-webkit-scrollbar-thumb:hover {
             background: var(--muted);
+        }
+
+        @media (max-width: 768px) {
+            body {
+                font-size: 16px;
+            }
         }
     </style>
 </head>
@@ -366,6 +428,23 @@
     <div id="root"></div>
 
     <script>
+        // ============================================
+        // THEME MANAGEMENT
+        // ============================================
+
+        function initTheme() {
+            const savedTheme = localStorage.getItem('remedy-theme') || 'light';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+        }
+
+        function toggleTheme() {
+            const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('remedy-theme', newTheme);
+            renderApp();
+        }
+
         // ============================================
         // REMEDY DATA & CONFIGURATION
         // ============================================
@@ -532,7 +611,6 @@
                 return "Please rest, stay hydrated, and consult a healthcare professional if symptoms persist.";
             }
             
-            // Add safety warning to all remedies except STD (which has its own medical advisory)
             if (concern === "STD") {
                 return advice;
             }
@@ -564,6 +642,8 @@
 
         function renderApp() {
             const root = document.getElementById("root");
+            const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
+            const themeIcon = currentTheme === 'light' ? '🌙' : '☀️';
             
             if (appState.loading) {
                 root.innerHTML = `
@@ -579,8 +659,13 @@
             root.innerHTML = `
                 <div class="chat-container">
                     <div class="chat-header">
-                        <h1>🌿 Remedy Chat</h1>
-                        <p>Traditional Wellness Guidance</p>
+                        <div class="header-content">
+                            <h1>🌿 Remedy Chat</h1>
+                            <p>Traditional Wellness Guidance</p>
+                        </div>
+                        <button class="theme-toggle" onclick="window.toggleTheme()" title="Toggle dark/light mode">
+                            ${themeIcon}
+                        </button>
                     </div>
                     
                     <div class="chat-messages scrollable" id="messagesContainer">
@@ -613,7 +698,7 @@
                                         <select id="tradition" required>
                                             <option value="">Choose a tradition...</option>
                                             ${TRADITIONS.map(t => `
-                                                <option value="${t}" ${appState.tradition === t ? 'selected' : ''}>${t} Tradition</option>
+                                                <option value="${t}" ${appState.tradition === t ? 'selected' : ''}>${t}</option>
                                             `).join('')}
                                         </select>
                                     </div>
@@ -640,7 +725,6 @@
                 </div>
             `;
             
-            // Scroll to bottom
             setTimeout(() => {
                 const container = document.getElementById("messagesContainer");
                 if (container) {
@@ -648,7 +732,6 @@
                 }
             }, 0);
             
-            // Attach event listeners
             document.getElementById("tradition").addEventListener("change", (e) => {
                 appState.tradition = e.target.value;
             });
@@ -666,7 +749,6 @@
                 return;
             }
             
-            // Add user message
             const userMsg = {
                 id: Date.now().toString(),
                 role: "user",
@@ -677,7 +759,6 @@
             appState.isTyping = true;
             renderApp();
             
-            // Simulate bot thinking
             setTimeout(() => {
                 const responseContent = getRemedy(appState.tradition, appState.concern);
                 const botMsg = {
@@ -706,16 +787,16 @@
         // ============================================
 
         window.addEventListener("DOMContentLoaded", () => {
+            initTheme();
             renderApp();
             
-            // Simulate loading complete
             setTimeout(() => {
                 appState.loading = false;
                 renderApp();
             }, 2000);
         });
 
-        // Expose functions globally
+        window.toggleTheme = toggleTheme;
         window.handleSubmit = handleSubmit;
     </script>
 </body>
