@@ -2009,7 +2009,9 @@
         }
 
         function setAppHeight() {
-            const viewportHeight = window.visualViewport ? window.visualViewport.height : window.innerHeight;
+            const viewportHeight = window.visualViewport
+                ? window.visualViewport.height
+                : document.documentElement.clientHeight || window.innerHeight;
             document.documentElement.style.setProperty('--app-height', `${Math.round(viewportHeight)}px`);
         }
 
