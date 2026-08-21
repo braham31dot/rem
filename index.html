@@ -442,7 +442,6 @@
             gap: 0.25rem;
             flex-shrink: 0;
             order: 3;
-            justify-content: center;
         }
 
         .header-left {
@@ -981,10 +980,6 @@
             .header-buttons,
             .header-left {
                 flex-basis: auto;
-            }
-
-            .header-buttons {
-                flex: 1;
             }
         }
 
@@ -3034,7 +3029,7 @@ ${t('safetyWarning')}`;
                                     
                                     <div class="send-btn-wrapper">
                                         <button type="submit" class="send-btn" ${appState.isTyping ? 'disabled' : ''}>
-                                            ${appState.isTyping ? '⏳' : '✈️'}
+                                            ${appState.isTyping ? '⏳' : '📨'}
                                         </button>
                                     </div>
                                 </div>
